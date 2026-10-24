@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulateur Interactif CyberPi & mBot2 — InfoLab Quenon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent-green: #3fb950;
+      --accent-orange: #d29922;
+      --accent-red: #f85149;
+      --text: #c9d1d9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    p.subtitle {
+      color: #8b949e;
+      margin-top: 6px;
+      font-size: 0.95rem;
+    }
+    .layout {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1100px;
+      width: 100%;
+    }
+    /* Boîtier CyberPi physique */
+    .cyberpi-device {
+      width: 320px;
+      height: 480px;
+      background: linear-gradient(145deg, #1f242c, #13171d);
+      border: 3px solid #3d4450;
+      border-radius: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+    .brand-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #8b949e;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .led-strip {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .led {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #222;
+      border: 1px solid #444;
+      transition: all 0.2s ease;
+    }
+    .led.active-green { background-color: #00ff66; box-shadow: 0 0 10px #00ff66; }
+    .led.active-red { background-color: #ff3344; box-shadow: 0 0 10px #ff3344; }
+    .led.active-orange { background-color: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
+    .led.active-blue { background-color: #00aaff; box-shadow: 0 0 10px #00aaff; }
+
+    /* Écran couleur 128x128 */
+    .screen-bezel {
+      background: #000;
+      padding: 10px;
+      border-radius: 12px;
+      border: 2px solid #282e38;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.8);
+      margin-bottom: 24px;
+    }
+    canvas#cyberScreen {
+      width: 192px;
+      height: 192px;
+      image-rendering: pixelated;
+      background: #000;
+      display: block;
+      border-radius: 4px;
+    }
+    /* Commandes physiques */
+    .controls-zone {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+      margin-top: auto;
+      margin-bottom: 10px;
+    }
+    /* Joystick 5D */
+    .joystick-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 34px);
+      grid-template-rows: repeat(3, 34px);
+      gap: 4px;
+    }
+    .btn-joy {
+      background: #2a313d;
+      border: 1px solid #444c56;
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      user-select: none;
+      transition: all 0.1s;
+    }
+    .btn-joy:active {
+      background: var(--accent);
+      transform: scale(0.92);
+    }
+    /* Boutons A / B */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-action {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #333a46;
+      border: 2px solid #555f6f;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #1e222a;
+      transition: all 0.1s;
+    }
+    .btn-action:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #1e222a;
+      background: var(--accent);
+    }
+
+    /* Panneau de sélection des produits */
+    .panel-config {
+      flex: 1;
+      min-width: 320px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .panel-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .mode-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .btn-mode {
+      flex: 1;
+      padding: 10px;
+      background: #21262d;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .btn-mode.active {
+      background: #1f6feb;
+      border-color: #388bfd;
+      color: #fff;
+    }
+    .mode-desc {
+      background: #0d1117;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+    }
+    .slider-group {
+      margin-top: 14px;
+    }
+    .slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .console-box {
+      margin-top: 20px;
+      background: #000;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #3fb950;
+      height: 110px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🤖 Simulateur Makeblock CyberPi & mBot2</h1>
+    <p class="subtitle">Studio Pédagogique InfoLab Quenon — Test interactif des 3 gammes de produits sans matériel physique</p>
+  </header>
+
+  <div class="layout">
+    <!-- Matériel CyberPi virtuel -->
+    <div class="cyberpi-device">
+      <div class="brand-logo">MAKEBLOCK • CYBERPI</div>
+      
+      <!-- Bandeau 5 LEDs RGB -->
+      <div class="led-strip">
+        <div class="led active-green" id="led0"></div>
+        <div class="led active-green" id="led1"></div>
+        <div class="led active-green" id="led2"></div>
+        <div class="led active-green" id="led3"></div>
+        <div class="led active-green" id="led4"></div>
+      </div>
+
+      <!-- Écran 128x128 -->
+      <div class="screen-bezel">
+        <canvas id="cyberScreen" width="128" height="128"></canvas>
+      </div>
+
+      <!-- Commandes de navigation -->
+      <div class="controls-zone">
+        <!-- Joystick 5D -->
+        <div class="joystick-pad">
+          <div></div>
+          <button class="btn-joy" id="joyUp">▲</button>
+          <div></div>
+          <button class="btn-joy" id="joyLeft">◀</button>
+          <button class="btn-joy" id="joyMid">●</button>
+          <button class="btn-joy" id="joyRight">▶</button>
+          <div></div>
+          <button class="btn-joy" id="joyDown">▼</button>
+          <div></div>
+        </div>
+
+        <!-- Boutons A / B -->
+        <div class="action-buttons">
+          <button class="btn-action" id="btnA">A</button>
+          <button class="btn-action" id="btnB">B</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panneau de sélection et commandes du simulateur -->
+    <div class="panel-config">
+      <div class="panel-title">🕹️ Mode de Démonstration Produit</div>
+      <div class="mode-selector">
+        <button class="btn-mode active" onclick="setMode('code_and_go')">1. Code & Go</button>
+        <button class="btn-mode" onclick="setMode('arcade')">2. Snake Arcade</button>
+        <button class="btn-mode" onclick="setMode('iot')">3. Sonomètre IoT</button>
+      </div>
+
+      <div class="mode-desc" id="modeDesc">
+        <strong>Mode Tangible Code & Go :</strong> Utilisez les flèches du joystick pour mémoriser les mouvements du robot mBot2 (Avancer, Reculer, Pivoter). Appuyez sur <strong>A</strong> pour exécuter la mission ou <strong>B</strong> pour réinitialiser la mémoire.
+      </div>
+
+      <div id="iotControls" style="display: none;">
+        <div class="slider-group">
+          <label>Niveau de bruit ambiant (dB) : <span id="noiseVal">25 %</span></label>
+          <input type="range" id="noiseSlider" min="0" max="100" value="25" oninput="updateIoT()">
+        </div>
+        <div class="slider-group">
+          <label>Luminosité de la pièce (Lux) : <span id="lightVal">60 %</span></label>
+          <input type="range" id="lightSlider" min="0" max="100" value="60" oninput="updateIoT()">
+        </div>
+      </div>
+
+      <div class="console-box" id="consoleLog">
+        [InfoLab CyberPi Simulator prêt]<br>
+        Mode actif: Code & Go Explorer.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('cyberScreen');
+    const ctx = canvas.getContext('2d');
+    const consoleBox = document.getElementById('consoleLog');
+
+    function log(msg) {
+      consoleBox.innerHTML += `<br>> ${msg}`;
+      consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    function setLEDs(colorClass) {
+      for (let i = 0; i < 5; i++) {
+        const el = document.getElementById(`led${i}`);
+        el.className = `led ${colorClass}`;
+      }
+    }
+
+    let currentMode = 'code_and_go';
+
+    // 1. État Code & Go
+    let programOrders = [];
+
+    // 2. État Snake
+    let snake = [[8, 8], [8, 9], [8, 10]];
+    let snakeDir = [0, -1];
+    let apple = [5, 5];
+    let score = 0;
+    let snakeOver = false;
+
+    // 3. État IoT
+    let noiseLevel = 25;
+    let lightLevel = 60;
+    let noiseHistory = new Array(30).fill(25);
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.btn-mode').forEach(b => b.classList.remove('active'));
+      const btn = event.target;
+      if (btn) btn.classList.add('active');
+
+      const desc = document.getElementById('modeDesc');
+      const iotCtrl = document.getElementById('iotControls');
+
+      if (mode === 'code_and_go') {
+        desc.innerHTML = `<strong>Mode Tangible Code & Go :</strong> Utilisez le joystick pour mémoriser les pas. Appuyez sur <strong>A</strong> pour exécuter ou <strong>B</strong> pour réinitialiser.`;
+        iotCtrl.style.display = 'none';
+        setLEDs('active-green');
+        log('Bascule vers Code & Go Explorer.');
+      } else if (mode === 'arcade') {
+        desc.innerHTML = `<strong>Mode CyberSnake :</strong> Dirigez le serpent avec le joystick. Mangez les pommes rouges pour grandir. Touche A pour relancer.`;
+        iotCtrl.style.display = 'none';
+        setLEDs('active-orange');
+        snake = [[8, 8], [8, 9], [8, 10]];
+        snakeDir = [0, -1];
+        snakeOver = false;
+        score = 0;
+        log('Jeu CyberSnake démarré.');
+      } else if (mode === 'iot') {
+        desc.innerHTML = `<strong>Mode Sonomètre & IoT :</strong> Bougez les curseurs ci-dessous pour simuler le bruit et la lumière dans la classe. Les LEDs et l'écran réagissent en direct.`;
+        iotCtrl.style.display = 'block';
+        updateIoT();
+        log('Station IoT activée.');
+      }
+      render();
+    }
+
+    function updateIoT() {
+      noiseLevel = parseInt(document.getElementById('noiseSlider').value);
+      lightLevel = parseInt(document.getElementById('lightSlider').value);
+      document.getElementById('noiseVal').innerText = `${noiseLevel} %`;
+      document.getElementById('lightVal').innerText = `${lightLevel} %`;
+
+      noiseHistory.shift();
+      noiseHistory.push(noiseLevel);
+
+      if (noiseLevel < 35) setLEDs('active-green');
+      else if (noiseLevel < 65) setLEDs('active-orange');
+      else setLEDs('active-red');
+
+      render();
+    }
+
+    function render() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, 128, 128);
+
+      if (currentMode === 'code_and_go') {
+        ctx.fillStyle = '#58a6ff';
+        ctx.font = 'bold 10px Inter';
+        ctx.fillText('CODE & GO mBot2', 10, 18);
+
+        ctx.fillStyle = '#aaa';
+        ctx.font = '9px monospace';
+        ctx.fillText(`Ordres : ${programOrders.length}/20`, 10, 34);
+
+        let x = 10, y = 50;
+        ctx.font = '16px monospace';
+        programOrders.forEach((ord, idx) => {
+          ctx.fillStyle = ord === '⬆️' ? '#3fb950' : (ord === '⬇️' ? '#d29922' : '#58a6ff');
+          ctx.fillText(ord, x, y);
+          x += 24;
+          if (x > 100) { x = 10; y += 22; }
+        });
+
+        ctx.fillStyle = '#888';
+        ctx.font = '8px Inter';
+        ctx.fillText('[A] GO  |  [B] RESET', 10, 120);
+
+      } else if (currentMode === 'arcade') {
+        if (snakeOver) {
+          ctx.fillStyle = '#f85149';
+          ctx.font = 'bold 12px Inter';
+          ctx.fillText('GAME OVER', 25, 55);
+          ctx.fillStyle = '#fff';
+          ctx.font = '10px Inter';
+          ctx.fillText(`Score: ${score}`, 40, 75);
+          return;
+        }
+
+        // Pomme
+        ctx.fillStyle = '#f85149';
+        ctx.fillRect(apple[0] * 8, apple[1] * 8, 7, 7);
+
+        // Serpent
+        snake.forEach((seg, i) => {
+          ctx.fillStyle = i === 0 ? '#ffea79' : '#3fb950';
+          ctx.fillRect(seg[0] * 8, seg[1] * 8, 7, 7);
+        });
+
+      } else if (currentMode === 'iot') {
+        ctx.fillStyle = '#58a6ff';
+        ctx.font = 'bold 10px Inter';
+        ctx.fillText('SONOMETRE CLASSE', 10, 16);
+
+        ctx.fillStyle = '#fff';
+        ctx.font = '9px Inter';
+        ctx.fillText(`Bruit : ${noiseLevel} %`, 10, 32);
+        ctx.fillText(`Lumière: ${lightLevel} %`, 10, 46);
+
+        // Graphique historique
+        ctx.strokeStyle = '#444';
+        ctx.beginPath();
+        ctx.moveTo(10, 115);
+        ctx.lineTo(118, 115);
+        ctx.stroke();
+
+        noiseHistory.forEach((v, idx) => {
+          const bx = 10 + (idx * 3.5);
+          const bh = (v * 50) / 100;
+          ctx.fillStyle = v > 65 ? '#f85149' : (v > 35 ? '#d29922' : '#3fb950');
+          ctx.fillRect(bx, 115 - bh, 3, bh);
+        });
+      }
+    }
+
+    // Gestion des entrées
+    document.getElementById('joyUp').onclick = () => handleJoy('⬆️', [0, -1]);
+    document.getElementById('joyDown').onclick = () => handleJoy('⬇️', [0, 1]);
+    document.getElementById('joyLeft').onclick = () => handleJoy('⬅️', [-1, 0]);
+    document.getElementById('joyRight').onclick = () => handleJoy('➡️', [1, 0]);
+    document.getElementById('joyMid').onclick = () => handleJoy('⭐', [0, 0]);
+
+    function handleJoy(symbol, dir) {
+      if (currentMode === 'code_and_go') {
+        if (programOrders.length < 15) {
+          programOrders.push(symbol);
+          log(`Ordre ajouté : ${symbol}`);
+          render();
+        }
+      } else if (currentMode === 'arcade') {
+        if (dir[0] !== 0 || dir[1] !== 0) {
+          snakeDir = dir;
+        }
+      }
+    }
+
+    document.getElementById('btnA').onclick = () => {
+      if (currentMode === 'code_and_go') {
+        log(`▶️ Exécution de la séquence (${programOrders.length} étapes)...`);
+        programOrders = [];
+        render();
+      } else if (currentMode === 'arcade' && snakeOver) {
+        setMode('arcade');
+      }
+    };
+
+    document.getElementById('btnB').onclick = () => {
+      if (currentMode === 'code_and_go') {
+        programOrders = [];
+        log('🔄 Mémoire mBot2 réinitialisée.');
+        render();
+      }
+    };
+
+    // Boucle de jeu pour Snake
+    setInterval(() => {
+      if (currentMode === 'arcade' && !snakeOver) {
+        const head = [snake[0][0] + snakeDir[0], snake[0][1] + snakeDir[1]];
+        if (head[0] < 0 || head[0] >= 16 || head[1] < 0 || head[1] >= 16) {
+          snakeOver = true;
+          setLEDs('active-red');
+          log('Collision mur ! Game Over.');
+        } else {
+          snake.unshift(head);
+          if (head[0] === apple[0] && head[1] === apple[1]) {
+            score++;
+            apple = [Math.floor(Math.random() * 15), Math.floor(Math.random() * 15)];
+            log(`Pomme mangée ! Score: ${score}`);
+          } else {
+            snake.pop();
+          }
+        }
+        render();
+      }
+    }, 180);
+
+    render();
+  </script>
+</body>
+</html>

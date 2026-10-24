@@ -1,0 +1,23 @@
+{
+  "name": "cyberpi-infolabquenon",
+  "version": "1.0.0",
+  "description": "Studio de produits pédagogiques et robotiques Makeblock CyberPi & mBot2 par InfoLab Quenon",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve simulator",
+    "test": "echo \"Simulation web disponible dans simulator/index.html\" && exit 0"
+  },
+  "keywords": [
+    "cyberpi",
+    "mbot2",
+    "makeblock",
+    "micropython",
+    "robotics",
+    "education",
+    "stem",
+    "screen-free"
+  ],
+  "author": "Laurent Quenon (InfoLab Quenon)",
+  "license": "MIT"
+}

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartes de Programmation - mBot2 Code & Go Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       RESET & BASE SCREEN STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* En-tête à l'écran (masqué à l'impression) */
+    .screen-header {
+      max-width: 900px;
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .screen-header h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .screen-header p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+    }
+
+    .print-instructions {
+      font-size: 0.82rem;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       PLANCHE A4 IMPRIMABLE
+       ========================================================================== */
+    .page-a4 {
+      width: 210mm;
+      height: 297mm;
+      background: white;
+      color: #1e293b;
+      padding: 12mm 10mm;
+      margin-bottom: 24px;
+      border-radius: 4px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+    }
+
+    .page-title-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-bottom: 8mm;
+    }
+
+    .page-title-banner h2 {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .page-title-banner span {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    /* Grille de cartes : 3 colonnes x 4 rangées = 12 cartes de ~62mm */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 5mm;
+      flex-grow: 1;
+    }
+
+    /* ==========================================================================
+       DESIGN DE LA CARTE INDIVIDUELLE (60mm x 60mm effectif)
+       ========================================================================== */
+    .card {
+      border: 2px dashed #cbd5e1; /* Trait de coupe */
+      border-radius: 14px;
+      padding: 3mm;
+      display: flex;
+      flex-direction: column;
+      background: #f8fafc;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-inner {
+      flex: 1;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3mm 2mm;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    /* Haut de la carte : Catégorie & repère */
+    .card-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      padding: 0 2mm;
+    }
+
+    /* Centre de la carte : Icône géante */
+    .card-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2mm;
+    }
+
+    .card-icon {
+      font-size: 38pt;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+    }
+
+    .card-action-title {
+      font-size: 11pt;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+    }
+
+    .card-detail {
+      font-size: 7.5pt;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    /* Bas de la carte : Le bouton correspondant sur la CyberPi */
+    .card-bottom-pill {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 6px;
+      padding: 1.5mm 3mm;
+      font-size: 6.8pt;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* ==========================================================================
+       THÈMES DE COULEURS ASSORTIS À LA CYBERPI
+       ========================================================================== */
+    /* 🟩 Avancer */
+    .card-forward .card-inner {
+      background: linear-gradient(145deg, #10b981, #059669);
+      border: 2px solid #047857;
+    }
+
+    /* 🟨 Reculer */
+    .card-backward .card-inner {
+      background: linear-gradient(145deg, #f59e0b, #d97706);
+      border: 2px solid #b45309;
+      color: #1e293b;
+    }
+    .card-backward .card-action-title,
+    .card-backward .card-top,
+    .card-backward .card-detail {
+      color: #0f172a;
+    }
+    .card-backward .card-bottom-pill {
+      background: rgba(255, 255, 255, 0.6);
+      color: #0f172a;
+    }
+
+    /* 🟦 Tourner à Gauche */
+    .card-left .card-inner {
+      background: linear-gradient(145deg, #3b82f6, #1d4ed8);
+      border: 2px solid #1e40af;
+    }
+
+    /* 🟧 Tourner à Droite */
+    .card-right .card-inner {
+      background: linear-gradient(145deg, #f97316, #ea580c);
+      border: 2px solid #c2410c;
+    }
+
+    /* 🟪 Action Surprise */
+    .card-action .card-inner {
+      background: linear-gradient(145deg, #a855f7, #7e22ce);
+      border: 2px solid #6b21a8;
+    }
+
+    /* 🏁 Départ (Start) */
+    .card-start .card-inner {
+      background: linear-gradient(145deg, #14b8a6, #0f766e);
+      border: 2px solid #115e59;
+    }
+
+    /* 🧀 Cible / Trésor */
+    .card-treasure .card-inner {
+      background: linear-gradient(145deg, #eab308, #ca8a04);
+      border: 2px solid #a16207;
+      color: #0f172a;
+    }
+    .card-treasure .card-action-title,
+    .card-treasure .card-top,
+    .card-treasure .card-detail {
+      color: #0f172a;
+    }
+    .card-treasure .card-bottom-pill {
+      background: rgba(255, 255, 255, 0.7);
+      color: #0f172a;
+    }
+
+    /* 🛑 Mur / Obstacle */
+    .card-wall .card-inner {
+      background: linear-gradient(145deg, #ef4444, #b91c1c);
+      border: 2px solid #991b1b;
+    }
+
+    /* Piste de programmation (Timeline en bas de page 3) */
+    .timeline-strip {
+      display: flex;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 4mm;
+      gap: 3mm;
+      margin-top: 5mm;
+      background: #f1f5f9;
+    }
+    .timeline-slot {
+      flex: 1;
+      height: 18mm;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 8pt;
+      font-weight: 800;
+      color: #94a3b8;
+    }
+
+    /* Footer de page A4 */
+    .page-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3mm;
+      font-size: 7.5pt;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ==========================================================================
+       MEDIA PRINT : IMPRESSION ULTRA-NETTE
+       ========================================================================== */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .screen-header {
+        display: none !important;
+      }
+      .page-a4 {
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        page-break-after: always;
+      }
+      /* Forcer les fonds de couleurs */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU DE COMMANDE À L'ÉCRAN -->
+  <div class="screen-header">
+    <div>
+      <h1>🤖 Kit de Cartes : mBot2 Code & Go</h1>
+      <p>36 cartes de programmation et repères de plateau à imprimer sur papier épais ou bristol A4.</p>
+      <div class="print-instructions">
+        💡 <strong>Conseil d'impression :</strong> Dans la fenêtre d'impression (Ctrl + P), activez <strong>"Graphiques d'arrière-plan"</strong> et choisissez l'échelle <strong>100%</strong>.
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ Imprimer les 3 Planches (Ctrl + P)
+    </button>
+  </div>
+
+  <!-- ========================================================================
+       PLANCHE 1 : DÉPLACEMENTS PRIMAIRES (12 CARTES)
+       ======================================================================== -->
+  <div class="page-a4">
+    <div class="page-title-banner">
+      <h2>Planche 1 : Déplacements & Lignes Droites</h2>
+      <span>mBot2 Code & Go • Page 1/3</span>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 6x Avancer -->
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#1</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#2</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#3</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#4</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#5</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#6</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <!-- 4x Reculer -->
+      <div class="card card-backward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#7</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬇️</div>
+            <div class="card-action-title">Reculer</div>
+            <div class="card-detail">- 25 cm (Marche Arr.)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Bas</div>
+        </div>
+      </div>
+
+      <div class="card card-backward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#8</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬇️</div>
+            <div class="card-action-title">Reculer</div>
+            <div class="card-detail">- 25 cm (Marche Arr.)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Bas</div>
+        </div>
+      </div>
+
+      <div class="card card-backward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#9</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬇️</div>
+            <div class="card-action-title">Reculer</div>
+            <div class="card-detail">- 25 cm (Marche Arr.)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Bas</div>
+        </div>
+      </div>
+
+      <div class="card card-backward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#10</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬇️</div>
+            <div class="card-action-title">Reculer</div>
+            <div class="card-detail">- 25 cm (Marche Arr.)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Bas</div>
+        </div>
+      </div>
+
+      <!-- 2x Avancer supplémentaires -->
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#11</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>Ordre</span><span>#12</span></div>
+          <div class="card-center">
+            <div class="card-icon">⬆️</div>
+            <div class="card-action-title">Avancer</div>
+            <div class="card-detail">+ 25 cm (1 case)</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Astuce : Découper le long des pointillés extérieurs. Plastifier pour prolonger la durée de vie.</span>
+      <span>mBot2 Code & Go</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PLANCHE 2 : ROTATIONS & PIVOTS À 90° (12 CARTES)
+       ======================================================================== -->
+  <div class="page-a4">
+    <div class="page-title-banner">
+      <h2>Planche 2 : Rotations à 90° (Gauche / Droite)</h2>
+      <span>mBot2 Code & Go • Page 2/3</span>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 6x Gauche -->
+      <div class="card card-left">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#13</span></div>
+          <div class="card-center">
+            <div class="card-icon">↶</div>
+            <div class="card-action-title">Tourner G.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
+        </div>
+      </div>
+
+      <div class="card card-left">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#14</span></div>
+          <div class="card-center">
+            <div class="card-icon">↶</div>
+            <div class="card-action-title">Tourner G.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
+        </div>
+      </div>
+
+      <div class="card card-left">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#15</span></div>
+          <div class="card-center">
+            <div class="card-icon">↶</div>
+            <div class="card-action-title">Tourner G.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
+        </div>
+      </div>
+
+      <div class="card card-left">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#16</span></div>
+          <div class="card-center">
+            <div class="card-icon">↶</div>
+            <div class="card-action-title">Tourner G.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
+        </div>
+      </div>
+
+      <div class="card card-left">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#17</span></div>
+          <div class="card-center">
+            <div class="card-icon">↶</div>
+            <div class="card-action-title">Tourner G.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
+        </div>
+      </div>
+
+      <div class="card card-left">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#18</span></div>
+          <div class="card-center">
+            <div class="card-icon">↶</div>
+            <div class="card-action-title">Tourner G.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
+        </div>
+      </div>
+
+      <!-- 6x Droite -->
+      <div class="card card-right">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#19</span></div>
+          <div class="card-center">
+            <div class="card-icon">↷</div>
+            <div class="card-action-title">Tourner D.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+        </div>
+      </div>
+
+      <div class="card card-right">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#20</span></div>
+          <div class="card-center">
+            <div class="card-icon">↷</div>
+            <div class="card-action-title">Tourner D.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+        </div>
+      </div>
+
+      <div class="card card-right">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#21</span></div>
+          <div class="card-center">
+            <div class="card-icon">↷</div>
+            <div class="card-action-title">Tourner D.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+        </div>
+      </div>
+
+      <div class="card card-right">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#22</span></div>
+          <div class="card-center">
+            <div class="card-icon">↷</div>
+            <div class="card-action-title">Tourner D.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+        </div>
+      </div>
+
+      <div class="card card-right">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#23</span></div>
+          <div class="card-center">
+            <div class="card-icon">↷</div>
+            <div class="card-action-title">Tourner D.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+        </div>
+      </div>
+
+      <div class="card card-right">
+        <div class="card-inner">
+          <div class="card-top"><span>Pivot</span><span>#24</span></div>
+          <div class="card-center">
+            <div class="card-icon">↷</div>
+            <div class="card-action-title">Tourner D.</div>
+            <div class="card-detail">Pivot 90° sur place</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Rappel Pédagogique : Tourner pivote le robot sur la même case, sans avancer.</span>
+      <span>mBot2 Code & Go</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PLANCHE 3 : ACTIONS SPÉCIALES & ACCESSOIRES DE PLATEAU (12 CARTES)
+       ======================================================================== -->
+  <div class="page-a4">
+    <div class="page-title-banner">
+      <h2>Planche 3 : Actions Spéciales & Repères</h2>
+      <span>mBot2 Code & Go • Page 3/3</span>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 4x Action Surprise -->
+      <div class="card card-action">
+        <div class="card-inner">
+          <div class="card-top"><span>Bonus</span><span>#25</span></div>
+          <div class="card-center">
+            <div class="card-icon">⭐</div>
+            <div class="card-action-title">Action !</div>
+            <div class="card-detail">Danse 360° & Son</div>
+          </div>
+          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+        </div>
+      </div>
+
+      <div class="card card-action">
+        <div class="card-inner">
+          <div class="card-top"><span>Bonus</span><span>#26</span></div>
+          <div class="card-center">
+            <div class="card-icon">⭐</div>
+            <div class="card-action-title">Action !</div>
+            <div class="card-detail">Danse 360° & Son</div>
+          </div>
+          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+        </div>
+      </div>
+
+      <div class="card card-action">
+        <div class="card-inner">
+          <div class="card-top"><span>Bonus</span><span>#27</span></div>
+          <div class="card-center">
+            <div class="card-icon">⭐</div>
+            <div class="card-action-title">Action !</div>
+            <div class="card-detail">Danse 360° & Son</div>
+          </div>
+          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+        </div>
+      </div>
+
+      <div class="card card-action">
+        <div class="card-inner">
+          <div class="card-top"><span>Bonus</span><span>#28</span></div>
+          <div class="card-center">
+            <div class="card-icon">⭐</div>
+            <div class="card-action-title">Action !</div>
+            <div class="card-detail">Danse 360° & Son</div>
+          </div>
+          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+        </div>
+      </div>
+
+      <!-- 2x Départ (Start) -->
+      <div class="card card-start">
+        <div class="card-inner">
+          <div class="card-top"><span>Plateau</span><span>Start</span></div>
+          <div class="card-center">
+            <div class="card-icon">🏁</div>
+            <div class="card-action-title">DÉPART</div>
+            <div class="card-detail">Poser le robot ici</div>
+          </div>
+          <div class="card-bottom-pill">🟢 Bouton A (GO)</div>
+        </div>
+      </div>
+
+      <div class="card card-start">
+        <div class="card-inner">
+          <div class="card-top"><span>Plateau</span><span>Start</span></div>
+          <div class="card-center">
+            <div class="card-icon">🏁</div>
+            <div class="card-action-title">DÉPART</div>
+            <div class="card-detail">Poser le robot ici</div>
+          </div>
+          <div class="card-bottom-pill">🟢 Bouton A (GO)</div>
+        </div>
+      </div>
+
+      <!-- 2x Trésor / Objectif -->
+      <div class="card card-treasure">
+        <div class="card-inner">
+          <div class="card-top"><span>Objectif</span><span>But</span></div>
+          <div class="card-center">
+            <div class="card-icon">🧀</div>
+            <div class="card-action-title">TRÉSOR</div>
+            <div class="card-detail">La cible à atteindre</div>
+          </div>
+          <div class="card-bottom-pill">🏆 Case Finale</div>
+        </div>
+      </div>
+
+      <div class="card card-treasure">
+        <div class="card-inner">
+          <div class="card-top"><span>Objectif</span><span>But</span></div>
+          <div class="card-center">
+            <div class="card-icon">🏆</div>
+            <div class="card-action-title">VICTOIRE</div>
+            <div class="card-detail">Mission accomplie !</div>
+          </div>
+          <div class="card-bottom-pill">🏆 Case Finale</div>
+        </div>
+      </div>
+
+      <!-- 4x Obstacles / Murs -->
+      <div class="card card-wall">
+        <div class="card-inner">
+          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-center">
+            <div class="card-icon">🛑</div>
+            <div class="card-action-title">MUR / STOP</div>
+            <div class="card-detail">Case interdite</div>
+          </div>
+          <div class="card-bottom-pill">⚠️ Interdit</div>
+        </div>
+      </div>
+
+      <div class="card card-wall">
+        <div class="card-inner">
+          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-center">
+            <div class="card-icon">🛑</div>
+            <div class="card-action-title">MUR / STOP</div>
+            <div class="card-detail">Case interdite</div>
+          </div>
+          <div class="card-bottom-pill">⚠️ Interdit</div>
+        </div>
+      </div>
+
+      <div class="card card-wall">
+        <div class="card-inner">
+          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-center">
+            <div class="card-icon">🛑</div>
+            <div class="card-action-title">MUR / STOP</div>
+            <div class="card-detail">Case interdite</div>
+          </div>
+          <div class="card-bottom-pill">⚠️ Interdit</div>
+        </div>
+      </div>
+
+      <div class="card card-wall">
+        <div class="card-inner">
+          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-center">
+            <div class="card-icon">🛑</div>
+            <div class="card-action-title">MUR / STOP</div>
+            <div class="card-detail">Case interdite</div>
+          </div>
+          <div class="card-bottom-pill">⚠️ Interdit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Piste de programmation détachable -->
+    <div class="timeline-strip">
+      <div class="timeline-slot">1ère carte</div>
+      <div class="timeline-slot">2e carte</div>
+      <div class="timeline-slot">3e carte</div>
+      <div class="timeline-slot">4e carte</div>
+      <div class="timeline-slot">5e carte</div>
+      <div class="timeline-slot">6e carte</div>
+    </div>
+
+    <div class="page-footer">
+      <span>La bande du bas peut être découpée pour servir de "Piste d'alignement" des cartes.</span>
+      <span>mBot2 Code & Go</span>
+    </div>
+  </div>
+
+</body>
+</html>
