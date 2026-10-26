@@ -136,11 +136,13 @@ def run_program():
             cyberpi.mbot2.turn(90, ROBOT_SPEED)
 
         elif cmd == 'A':
-            # Action festive / Surprise
-            flash_leds(255, 0, 255)
+            # Action Magique : Danse joyeuse sur place avec retour exact à l'orientation initiale (somme = 0°)
+            cyberpi.led.show("rainbow")
             cyberpi.audio.play("cheerful")
-            cyberpi.mbot2.turn(360, 60)
-            time.sleep(0.2)
+            cyberpi.mbot2.turn(25, 80)
+            cyberpi.mbot2.turn(-50, 80)
+            cyberpi.mbot2.turn(25, 80)
+            time.sleep(0.1)
 
         flash_leds(0, 0, 0)
         time.sleep(0.3) # Pause entre les mouvements pour bien décomposer

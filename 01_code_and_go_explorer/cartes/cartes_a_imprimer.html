@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cartes de Programmation - mBot2 Code & Go Explorer</title>
+  <title>Kit Cartes mBot2 Code & Go — 4 Planches A4 Optimisées (Zéro Gaspillage)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -28,14 +28,14 @@
       min-height: 100vh;
     }
 
-    /* En-tête à l'écran (masqué à l'impression) */
+    /* Barre d'action écran (totalement masquée à l'impression) */
     .screen-header {
       max-width: 900px;
       width: 100%;
       background: #1e293b;
       border: 1px solid #334155;
       border-radius: 16px;
-      padding: 24px;
+      padding: 20px 24px;
       margin-bottom: 24px;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
       display: flex;
@@ -46,7 +46,7 @@
     }
 
     .screen-header h1 {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #38bdf8;
       display: flex;
@@ -56,10 +56,9 @@
 
     .screen-header p {
       font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #94a3b8;
-      margin-top: 6px;
-      line-height: 1.4;
+      margin-top: 4px;
     }
 
     .print-btn {
@@ -83,145 +82,129 @@
       box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
     }
 
-    .print-instructions {
-      font-size: 0.82rem;
-      color: #fbbf24;
-      background: rgba(251, 191, 36, 0.1);
-      border: 1px solid rgba(251, 191, 36, 0.3);
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-top: 8px;
+    .screen-tag {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
       width: 100%;
     }
 
     /* ==========================================================================
-       PLANCHE A4 IMPRIMABLE
+       PLANCHE A4 IMPRIMABLE (PURE DÉCOUPE SANS TITRES NI BAS DE PAGE)
        ========================================================================== */
     .page-a4 {
       width: 210mm;
-      height: 297mm;
+      height: 295mm;
       background: white;
       color: #1e293b;
-      padding: 12mm 10mm;
+      padding: 12mm 12mm;
       margin-bottom: 24px;
       border-radius: 4px;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      page-break-after: always;
-    }
-
-    .page-title-banner {
-      display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 6px;
-      margin-bottom: 8mm;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
 
-    .page-title-banner h2 {
-      font-size: 13pt;
-      font-weight: 800;
-      color: #0f172a;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .page-a4:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
     }
 
-    .page-title-banner span {
-      font-size: 9pt;
-      font-weight: 600;
-      color: #64748b;
-    }
-
-    /* Grille de cartes : 3 colonnes x 4 rangées = 12 cartes de ~62mm */
-    .cards-grid {
+    /* Grille 3 colonnes x 4 lignes (12 cartes carrées 60x60 mm) */
+    .cards-grid-3x4 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-      gap: 5mm;
-      flex-grow: 1;
+      grid-template-columns: repeat(3, 60mm);
+      grid-template-rows: repeat(4, 60mm);
+      gap: 3mm;
+      justify-content: center;
+      align-content: center;
     }
 
     /* ==========================================================================
-       DESIGN DE LA CARTE INDIVIDUELLE (60mm x 60mm effectif)
+       DESIGN DE LA CARTE CARRÉE (60mm x 60mm)
        ========================================================================== */
     .card {
-      border: 2px dashed #cbd5e1; /* Trait de coupe */
-      border-radius: 14px;
-      padding: 3mm;
+      width: 60mm;
+      height: 60mm;
+      border: 1.5px dashed #94a3b8;
+      border-radius: 10px;
+      padding: 2.2mm;
       display: flex;
       flex-direction: column;
       background: #f8fafc;
       position: relative;
       overflow: hidden;
+      box-sizing: border-box;
     }
 
     .card-inner {
       flex: 1;
-      border-radius: 10px;
+      border-radius: 7px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 3mm 2mm;
+      padding: 2.2mm 1.8mm;
       text-align: center;
       color: white;
       position: relative;
     }
 
-    /* Haut de la carte : Catégorie & repère */
     .card-top {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 7pt;
+      font-size: 6.5pt;
       font-weight: 800;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      opacity: 0.9;
-      padding: 0 2mm;
+      opacity: 0.95;
+      padding: 0 1mm;
     }
 
-    /* Centre de la carte : Icône géante */
     .card-center {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2mm;
+      gap: 1mm;
     }
 
-    .card-icon {
-      font-size: 38pt;
-      line-height: 1;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+    .card-motif-svg {
+      width: 28mm;
+      height: 28mm;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.22));
     }
 
     .card-action-title {
-      font-size: 11pt;
+      font-size: 9.5pt;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       line-height: 1.1;
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
     }
 
-    .card-detail {
-      font-size: 7.5pt;
-      font-weight: 600;
-      opacity: 0.95;
-    }
-
-    /* Bas de la carte : Le bouton correspondant sur la CyberPi */
     .card-bottom-pill {
       background: rgba(0, 0, 0, 0.25);
-      border-radius: 6px;
-      padding: 1.5mm 3mm;
-      font-size: 6.8pt;
+      border-radius: 4px;
+      padding: 1mm 2.5mm;
+      font-size: 6.2pt;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -230,655 +213,1411 @@
       letter-spacing: 0.3px;
     }
 
-    /* ==========================================================================
-       THÈMES DE COULEURS ASSORTIS À LA CYBERPI
-       ========================================================================== */
-    /* 🟩 Avancer */
+    /* Thèmes couleurs */
     .card-forward .card-inner {
       background: linear-gradient(145deg, #10b981, #059669);
-      border: 2px solid #047857;
+      border: 1.5px solid #047857;
     }
-
-    /* 🟨 Reculer */
     .card-backward .card-inner {
       background: linear-gradient(145deg, #f59e0b, #d97706);
-      border: 2px solid #b45309;
-      color: #1e293b;
+      border: 1.5px solid #b45309;
+      color: #0f172a;
     }
     .card-backward .card-action-title,
-    .card-backward .card-top,
-    .card-backward .card-detail {
+    .card-backward .card-top {
       color: #0f172a;
     }
     .card-backward .card-bottom-pill {
       background: rgba(255, 255, 255, 0.6);
       color: #0f172a;
     }
-
-    /* 🟦 Tourner à Gauche */
     .card-left .card-inner {
       background: linear-gradient(145deg, #3b82f6, #1d4ed8);
-      border: 2px solid #1e40af;
+      border: 1.5px solid #1e40af;
     }
-
-    /* 🟧 Tourner à Droite */
     .card-right .card-inner {
       background: linear-gradient(145deg, #f97316, #ea580c);
-      border: 2px solid #c2410c;
+      border: 1.5px solid #c2410c;
     }
-
-    /* 🟪 Action Surprise */
     .card-action .card-inner {
       background: linear-gradient(145deg, #a855f7, #7e22ce);
-      border: 2px solid #6b21a8;
+      border: 1.5px solid #6b21a8;
     }
-
-    /* 🏁 Départ (Start) */
     .card-start .card-inner {
       background: linear-gradient(145deg, #14b8a6, #0f766e);
-      border: 2px solid #115e59;
+      border: 1.5px solid #115e59;
     }
-
-    /* 🧀 Cible / Trésor */
     .card-treasure .card-inner {
       background: linear-gradient(145deg, #eab308, #ca8a04);
-      border: 2px solid #a16207;
+      border: 1.5px solid #a16207;
       color: #0f172a;
     }
     .card-treasure .card-action-title,
-    .card-treasure .card-top,
-    .card-treasure .card-detail {
+    .card-treasure .card-top {
       color: #0f172a;
     }
     .card-treasure .card-bottom-pill {
       background: rgba(255, 255, 255, 0.7);
       color: #0f172a;
     }
-
-    /* 🛑 Mur / Obstacle */
     .card-wall .card-inner {
       background: linear-gradient(145deg, #ef4444, #b91c1c);
-      border: 2px solid #991b1b;
+      border: 1.5px solid #991b1b;
     }
 
-    /* Piste de programmation (Timeline en bas de page 3) */
-    .timeline-strip {
-      display: flex;
-      border: 2px dashed #94a3b8;
-      border-radius: 8px;
-      padding: 4mm;
-      gap: 3mm;
-      margin-top: 5mm;
-      background: #f1f5f9;
+    /* ==========================================================================
+       PLANCHE 4 : PISTE DE PROGRAMMATION 3x3 (TAILLE RÉELLE 60x60 mm)
+       ========================================================================== */
+    .piste-grid-3x3 {
+      display: grid;
+      grid-template-columns: repeat(3, 60mm);
+      grid-template-rows: repeat(3, 60mm);
+      gap: 6mm;
+      justify-content: center;
+      align-content: center;
     }
-    .timeline-slot {
-      flex: 1;
-      height: 18mm;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      background: white;
+
+    .piste-slot {
+      width: 60mm;
+      height: 60mm;
+      border: 2px dashed #3b82f6;
+      border-radius: 12px;
+      background: #f8fafc;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 8pt;
-      font-weight: 800;
-      color: #94a3b8;
+      justify-content: space-between;
+      padding: 2.5mm;
+      position: relative;
     }
 
-    /* Footer de page A4 */
-    .page-footer {
-      border-top: 1px solid #e2e8f0;
-      padding-top: 3mm;
-      font-size: 7.5pt;
-      color: #94a3b8;
+    .piste-slot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    .piste-slot-badge {
+      width: 8mm;
+      height: 8mm;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      font-size: 10.5pt;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+    }
+
+    .piste-slot-step {
+      font-size: 7.5pt;
+      font-weight: 800;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .piste-slot-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5mm;
+      opacity: 0.55;
+    }
+
+    .piste-ghost-card {
+      width: 22mm;
+      height: 22mm;
+      border: 1.5px dashed #94a3b8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13pt;
+      color: #94a3b8;
+    }
+
+    .piste-slot-footer {
+      font-size: 6.8pt;
+      font-weight: 700;
+      color: #64748b;
+      text-align: center;
+      border-top: 1px dotted #cbd5e1;
+      padding-top: 1mm;
+      text-transform: uppercase;
+    }
+
+    .piste-slot-go {
+      border-color: #10b981;
+      background: #f0fdf4;
+    }
+
+    .piste-slot-go .piste-slot-badge {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+    }
+
+    .piste-slot-go .piste-slot-step {
+      color: #047857;
+    }
+
     /* ==========================================================================
-       MEDIA PRINT : IMPRESSION ULTRA-NETTE
+       MEDIA PRINT : STRICT A4 • ZÉRO PAGE BLANCHE • ZÉRO GASPILLAGE
        ========================================================================== */
+    @page {
+      size: A4 portrait;
+      margin: 0mm;
+    }
+
     @media print {
-      body {
-        background: transparent;
-        padding: 0;
+      html, body {
+        width: 210mm !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
-      .screen-header {
+      .screen-header,
+      .screen-tag {
         display: none !important;
       }
       .page-a4 {
-        margin: 0;
-        box-shadow: none;
-        border-radius: 0;
-        width: 100%;
-        height: 100%;
-        page-break-after: always;
+        box-sizing: border-box !important;
+        width: 210mm !important;
+        height: 292mm !important; /* 292mm: laisse 5mm de marge de sécurité pour éliminer tout saut de page */
+        max-height: 292mm !important;
+        margin: 0 auto !important;
+        padding: 10mm 12mm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        page-break-after: page !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
       }
-      /* Forcer les fonds de couleurs */
-      * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+      .page-a4:last-of-type {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .cards-grid-3x4 {
+        gap: 3mm !important;
+        margin: auto 0 !important;
+      }
+      .piste-grid-3x3 {
+        gap: 6mm !important;
+        margin: auto 0 !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- BANDEAU DE COMMANDE À L'ÉCRAN -->
+  <!-- BARRE D'ACTION ÉCRAN -->
   <div class="screen-header">
     <div>
-      <h1>🤖 Kit de Cartes : mBot2 Code & Go</h1>
-      <p>36 cartes de programmation et repères de plateau à imprimer sur papier épais ou bristol A4.</p>
-      <div class="print-instructions">
-        💡 <strong>Conseil d'impression :</strong> Dans la fenêtre d'impression (Ctrl + P), activez <strong>"Graphiques d'arrière-plan"</strong> et choisissez l'échelle <strong>100%</strong>.
-      </div>
+      <h1>🤖 Kit Cartes mBot2 Code & Go (Éco-Impression 4 Pages A4)</h1>
+      <p>36 cartes complètes (3 planches de 12 cartes 60×60 mm) + 1 Tapis 3x3 taille réelle. <strong>Zéro page blanche</strong>, zéro gaspillage.</p>
     </div>
     <button class="print-btn" onclick="window.print()">
-      🖨️ Imprimer les 3 Planches (Ctrl + P)
+      🖨️ Imprimer les 4 Pages A4 (Ctrl + P)
     </button>
   </div>
 
   <!-- ========================================================================
-       PLANCHE 1 : DÉPLACEMENTS PRIMAIRES (12 CARTES)
+       PAGE 1 / 4 : DÉPLACEMENTS (8x AVANCER + 4x RECULER = 12 CARTES)
        ======================================================================== -->
   <div class="page-a4">
-    <div class="page-title-banner">
-      <h2>Planche 1 : Déplacements & Lignes Droites</h2>
-      <span>mBot2 Code & Go • Page 1/3</span>
+    <div class="screen-tag">
+      <span>Page 1/4 • Déplacements (8x Avancer + 4x Reculer)</span>
+      <span>12 cartes 60×60 mm</span>
     </div>
 
-    <div class="cards-grid">
-      <!-- 6x Avancer -->
+    <div class="cards-grid-3x4">
+      
       <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#1</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬆️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
       <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#2</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬆️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
       <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#3</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬆️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
       <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#4</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬆️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
       <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#5</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬆️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
       <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#6</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬆️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
-      <!-- 4x Reculer -->
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
+          <div class="card-center">
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
+            <div class="card-action-title">Avancer</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+      <div class="card card-forward">
+        <div class="card-inner">
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
+          <div class="card-center">
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
+            <div class="card-action-title">Avancer</div>
+          </div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
+        </div>
+      </div>
+      
       <div class="card card-backward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#7</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬇️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-3</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fffbeb" stroke="#f59e0b" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M78 75 L122 75 L122 125 L150 125 L100 175 L50 125 L78 125 Z" fill="#f59e0b" stroke="#b45309" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 40 L66 40 C68.209 40 70 41.791 70 44 L70 72 C70 74.209 68.209 76 66 76 L62 76 C59.791 76 58 74.209 58 72 L58 44 C58 41.791 59.791 40 62 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 40 L138 40 C140.209 40 142 41.791 142 44 L142 72 C142 74.209 140.209 76 138 76 L134 76 C131.791 76 130 74.209 130 72 L130 44 C130 41.791 131.791 40 134 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 35 L122 35 C128.627 35 134 40.373 134 47 L134 68 C134 74.627 128.627 80 122 80 L78 80 C71.373 80 66 74.627 66 68 L66 47 C66 40.373 71.373 35 78 35 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 41 L120 41 C124.418 41 128 44.582 128 49 L128 61 C128 65.418 124.418 69 120 69 L80 69 C75.582 69 72 65.418 72 61 L72 49 C72 44.582 75.582 41 80 41 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 54 C77 49.029 81.029 45 86 45 C90.971 45 95 49.029 95 54 C95 58.971 90.971 63 86 63 C81.029 63 77 58.971 77 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 54 C105 49.029 109.029 45 114 45 C118.971 45 123 49.029 123 54 C123 58.971 118.971 63 114 63 C109.029 63 105 58.971 105 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 56 C82 53.791 83.791 52 86 52 C88.209 52 90 53.791 90 56 C90 58.209 88.209 60 86 60 C83.791 60 82 58.209 82 56 Z" fill="#0f172a"/>
+    <path d="M110 56 C110 53.791 111.791 52 114 52 C116.209 52 118 53.791 118 56 C118 58.209 116.209 60 114 60 C111.791 60 110 58.209 110 56 Z" fill="#0f172a"/>
+    <path d="M83 54.5 C83 53.672 83.672 53 84.5 53 C85.328 53 86 53.672 86 54.5 C86 55.328 85.328 56 84.5 56 C83.672 56 83 55.328 83 54.5 Z" fill="#ffffff"/>
+    <path d="M111 54.5 C111 53.672 111.672 53 112.5 53 C113.328 53 114 53.672 114 54.5 C114 55.328 113.328 56 112.5 56 C111.672 56 111 55.328 111 54.5 Z" fill="#ffffff"/>
+    <path d="M96 61 C98.667 62.333 101.333 62.333 104 61" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M48 48 C44.648 50.223 42.633 53.978 42.633 58 C42.633 62.022 44.648 65.777 48 68 M40 43 C35.695 46.797 33.229 52.26 33.229 58 C33.229 63.74 35.695 69.203 40 73 M152 48 C155.352 50.223 157.367 53.978 157.367 58 C157.367 62.022 155.352 65.777 152 68 M160 43 C164.305 46.797 166.771 52.26 166.771 58 C166.771 63.74 164.305 69.203 160 73" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Reculer</div>
-            <div class="card-detail">- 25 cm (Marche Arr.)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Bas</div>
         </div>
       </div>
-
       <div class="card card-backward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#8</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬇️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-3</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fffbeb" stroke="#f59e0b" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M78 75 L122 75 L122 125 L150 125 L100 175 L50 125 L78 125 Z" fill="#f59e0b" stroke="#b45309" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 40 L66 40 C68.209 40 70 41.791 70 44 L70 72 C70 74.209 68.209 76 66 76 L62 76 C59.791 76 58 74.209 58 72 L58 44 C58 41.791 59.791 40 62 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 40 L138 40 C140.209 40 142 41.791 142 44 L142 72 C142 74.209 140.209 76 138 76 L134 76 C131.791 76 130 74.209 130 72 L130 44 C130 41.791 131.791 40 134 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 35 L122 35 C128.627 35 134 40.373 134 47 L134 68 C134 74.627 128.627 80 122 80 L78 80 C71.373 80 66 74.627 66 68 L66 47 C66 40.373 71.373 35 78 35 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 41 L120 41 C124.418 41 128 44.582 128 49 L128 61 C128 65.418 124.418 69 120 69 L80 69 C75.582 69 72 65.418 72 61 L72 49 C72 44.582 75.582 41 80 41 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 54 C77 49.029 81.029 45 86 45 C90.971 45 95 49.029 95 54 C95 58.971 90.971 63 86 63 C81.029 63 77 58.971 77 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 54 C105 49.029 109.029 45 114 45 C118.971 45 123 49.029 123 54 C123 58.971 118.971 63 114 63 C109.029 63 105 58.971 105 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 56 C82 53.791 83.791 52 86 52 C88.209 52 90 53.791 90 56 C90 58.209 88.209 60 86 60 C83.791 60 82 58.209 82 56 Z" fill="#0f172a"/>
+    <path d="M110 56 C110 53.791 111.791 52 114 52 C116.209 52 118 53.791 118 56 C118 58.209 116.209 60 114 60 C111.791 60 110 58.209 110 56 Z" fill="#0f172a"/>
+    <path d="M83 54.5 C83 53.672 83.672 53 84.5 53 C85.328 53 86 53.672 86 54.5 C86 55.328 85.328 56 84.5 56 C83.672 56 83 55.328 83 54.5 Z" fill="#ffffff"/>
+    <path d="M111 54.5 C111 53.672 111.672 53 112.5 53 C113.328 53 114 53.672 114 54.5 C114 55.328 113.328 56 112.5 56 C111.672 56 111 55.328 111 54.5 Z" fill="#ffffff"/>
+    <path d="M96 61 C98.667 62.333 101.333 62.333 104 61" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M48 48 C44.648 50.223 42.633 53.978 42.633 58 C42.633 62.022 44.648 65.777 48 68 M40 43 C35.695 46.797 33.229 52.26 33.229 58 C33.229 63.74 35.695 69.203 40 73 M152 48 C155.352 50.223 157.367 53.978 157.367 58 C157.367 62.022 155.352 65.777 152 68 M160 43 C164.305 46.797 166.771 52.26 166.771 58 C166.771 63.74 164.305 69.203 160 73" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Reculer</div>
-            <div class="card-detail">- 25 cm (Marche Arr.)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Bas</div>
         </div>
       </div>
-
       <div class="card card-backward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#9</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬇️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-3</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fffbeb" stroke="#f59e0b" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M78 75 L122 75 L122 125 L150 125 L100 175 L50 125 L78 125 Z" fill="#f59e0b" stroke="#b45309" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 40 L66 40 C68.209 40 70 41.791 70 44 L70 72 C70 74.209 68.209 76 66 76 L62 76 C59.791 76 58 74.209 58 72 L58 44 C58 41.791 59.791 40 62 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 40 L138 40 C140.209 40 142 41.791 142 44 L142 72 C142 74.209 140.209 76 138 76 L134 76 C131.791 76 130 74.209 130 72 L130 44 C130 41.791 131.791 40 134 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 35 L122 35 C128.627 35 134 40.373 134 47 L134 68 C134 74.627 128.627 80 122 80 L78 80 C71.373 80 66 74.627 66 68 L66 47 C66 40.373 71.373 35 78 35 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 41 L120 41 C124.418 41 128 44.582 128 49 L128 61 C128 65.418 124.418 69 120 69 L80 69 C75.582 69 72 65.418 72 61 L72 49 C72 44.582 75.582 41 80 41 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 54 C77 49.029 81.029 45 86 45 C90.971 45 95 49.029 95 54 C95 58.971 90.971 63 86 63 C81.029 63 77 58.971 77 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 54 C105 49.029 109.029 45 114 45 C118.971 45 123 49.029 123 54 C123 58.971 118.971 63 114 63 C109.029 63 105 58.971 105 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 56 C82 53.791 83.791 52 86 52 C88.209 52 90 53.791 90 56 C90 58.209 88.209 60 86 60 C83.791 60 82 58.209 82 56 Z" fill="#0f172a"/>
+    <path d="M110 56 C110 53.791 111.791 52 114 52 C116.209 52 118 53.791 118 56 C118 58.209 116.209 60 114 60 C111.791 60 110 58.209 110 56 Z" fill="#0f172a"/>
+    <path d="M83 54.5 C83 53.672 83.672 53 84.5 53 C85.328 53 86 53.672 86 54.5 C86 55.328 85.328 56 84.5 56 C83.672 56 83 55.328 83 54.5 Z" fill="#ffffff"/>
+    <path d="M111 54.5 C111 53.672 111.672 53 112.5 53 C113.328 53 114 53.672 114 54.5 C114 55.328 113.328 56 112.5 56 C111.672 56 111 55.328 111 54.5 Z" fill="#ffffff"/>
+    <path d="M96 61 C98.667 62.333 101.333 62.333 104 61" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M48 48 C44.648 50.223 42.633 53.978 42.633 58 C42.633 62.022 44.648 65.777 48 68 M40 43 C35.695 46.797 33.229 52.26 33.229 58 C33.229 63.74 35.695 69.203 40 73 M152 48 C155.352 50.223 157.367 53.978 157.367 58 C157.367 62.022 155.352 65.777 152 68 M160 43 C164.305 46.797 166.771 52.26 166.771 58 C166.771 63.74 164.305 69.203 160 73" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Reculer</div>
-            <div class="card-detail">- 25 cm (Marche Arr.)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Bas</div>
         </div>
       </div>
-
       <div class="card card-backward">
         <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#10</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⬇️</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-3</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fffbeb" stroke="#f59e0b" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M78 75 L122 75 L122 125 L150 125 L100 175 L50 125 L78 125 Z" fill="#f59e0b" stroke="#b45309" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 40 L66 40 C68.209 40 70 41.791 70 44 L70 72 C70 74.209 68.209 76 66 76 L62 76 C59.791 76 58 74.209 58 72 L58 44 C58 41.791 59.791 40 62 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 40 L138 40 C140.209 40 142 41.791 142 44 L142 72 C142 74.209 140.209 76 138 76 L134 76 C131.791 76 130 74.209 130 72 L130 44 C130 41.791 131.791 40 134 40 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 35 L122 35 C128.627 35 134 40.373 134 47 L134 68 C134 74.627 128.627 80 122 80 L78 80 C71.373 80 66 74.627 66 68 L66 47 C66 40.373 71.373 35 78 35 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 41 L120 41 C124.418 41 128 44.582 128 49 L128 61 C128 65.418 124.418 69 120 69 L80 69 C75.582 69 72 65.418 72 61 L72 49 C72 44.582 75.582 41 80 41 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 54 C77 49.029 81.029 45 86 45 C90.971 45 95 49.029 95 54 C95 58.971 90.971 63 86 63 C81.029 63 77 58.971 77 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 54 C105 49.029 109.029 45 114 45 C118.971 45 123 49.029 123 54 C123 58.971 118.971 63 114 63 C109.029 63 105 58.971 105 54 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 56 C82 53.791 83.791 52 86 52 C88.209 52 90 53.791 90 56 C90 58.209 88.209 60 86 60 C83.791 60 82 58.209 82 56 Z" fill="#0f172a"/>
+    <path d="M110 56 C110 53.791 111.791 52 114 52 C116.209 52 118 53.791 118 56 C118 58.209 116.209 60 114 60 C111.791 60 110 58.209 110 56 Z" fill="#0f172a"/>
+    <path d="M83 54.5 C83 53.672 83.672 53 84.5 53 C85.328 53 86 53.672 86 54.5 C86 55.328 85.328 56 84.5 56 C83.672 56 83 55.328 83 54.5 Z" fill="#ffffff"/>
+    <path d="M111 54.5 C111 53.672 111.672 53 112.5 53 C113.328 53 114 53.672 114 54.5 C114 55.328 113.328 56 112.5 56 C111.672 56 111 55.328 111 54.5 Z" fill="#ffffff"/>
+    <path d="M96 61 C98.667 62.333 101.333 62.333 104 61" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M48 48 C44.648 50.223 42.633 53.978 42.633 58 C42.633 62.022 44.648 65.777 48 68 M40 43 C35.695 46.797 33.229 52.26 33.229 58 C33.229 63.74 35.695 69.203 40 73 M152 48 C155.352 50.223 157.367 53.978 157.367 58 C157.367 62.022 155.352 65.777 152 68 M160 43 C164.305 46.797 166.771 52.26 166.771 58 C166.771 63.74 164.305 69.203 160 73" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-miterlimit="10"/>
+  </g>
+</svg>
             <div class="card-action-title">Reculer</div>
-            <div class="card-detail">- 25 cm (Marche Arr.)</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Bas</div>
         </div>
       </div>
-
-      <!-- 2x Avancer supplémentaires -->
-      <div class="card card-forward">
-        <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#11</span></div>
-          <div class="card-center">
-            <div class="card-icon">⬆️</div>
-            <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
-          </div>
-          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
-        </div>
-      </div>
-
-      <div class="card card-forward">
-        <div class="card-inner">
-          <div class="card-top"><span>Ordre</span><span>#12</span></div>
-          <div class="card-center">
-            <div class="card-icon">⬆️</div>
-            <div class="card-action-title">Avancer</div>
-            <div class="card-detail">+ 25 cm (1 case)</div>
-          </div>
-          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Astuce : Découper le long des pointillés extérieurs. Plastifier pour prolonger la durée de vie.</span>
-      <span>mBot2 Code & Go</span>
     </div>
   </div>
 
   <!-- ========================================================================
-       PLANCHE 2 : ROTATIONS & PIVOTS À 90° (12 CARTES)
+       PAGE 2 / 4 : ROTATIONS (5x GAUCHE + 5x DROITE) + 2x ACTIONS MAGIQUES (12 CARTES)
        ======================================================================== -->
   <div class="page-a4">
-    <div class="page-title-banner">
-      <h2>Planche 2 : Rotations à 90° (Gauche / Droite)</h2>
-      <span>mBot2 Code & Go • Page 2/3</span>
+    <div class="screen-tag">
+      <span>Page 2/4 • Rotations 90° & Actions (5x Gauche + 5x Droite + 2x Action)</span>
+      <span>12 cartes 60×60 mm</span>
     </div>
 
-    <div class="cards-grid">
-      <!-- 6x Gauche -->
+    <div class="cards-grid-3x4">
+      
       <div class="card card-left">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#13</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↶</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-4</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M30 75 L72 42 L66 60 C127.333 50 158 76.667 158 140 L132 140 C132 96.667 110 79.333 66 88 L72 108 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M59 102 L62 102 C64.209 102 66 103.791 66 106 L66 132 C66 134.209 64.209 136 62 136 L59 136 C56.791 136 55 134.209 55 132 L55 106 C55 103.791 56.791 102 59 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M126 102 L129 102 C131.209 102 133 103.791 133 106 L133 132 C133 134.209 131.209 136 129 136 L126 136 C123.791 136 122 134.209 122 132 L122 106 C122 103.791 123.791 102 126 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 98 L114 98 C120.627 98 126 103.373 126 110 L126 128 C126 134.627 120.627 140 114 140 L74 140 C67.373 140 62 134.627 62 128 L62 110 C62 103.373 67.373 98 74 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M76 104 L112 104 C116.418 104 120 107.582 120 112 L120 122 C120 126.418 116.418 130 112 130 L76 130 C71.582 130 68 126.418 68 122 L68 112 C68 107.582 71.582 104 76 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 116.5 C72 111.806 75.806 108 80.5 108 C85.194 108 89 111.806 89 116.5 C89 121.194 85.194 125 80.5 125 C75.806 125 72 121.194 72 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M99 116.5 C99 111.806 102.806 108 107.5 108 C112.194 108 116 111.806 116 116.5 C116 121.194 112.194 125 107.5 125 C102.806 125 99 121.194 99 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 116 C74 113.791 75.791 112 78 112 C80.209 112 82 113.791 82 116 C82 118.209 80.209 120 78 120 C75.791 120 74 118.209 74 116 Z" fill="#0f172a"/>
+    <path d="M101 116 C101 113.791 102.791 112 105 112 C107.209 112 109 113.791 109 116 C109 118.209 107.209 120 105 120 C102.791 120 101 118.209 101 116 Z" fill="#0f172a"/>
+    <path d="M75 114.5 C75 113.672 75.672 113 76.5 113 C77.328 113 78 113.672 78 114.5 C78 115.328 77.328 116 76.5 116 C75.672 116 75 115.328 75 114.5 Z" fill="#ffffff"/>
+    <path d="M102 114.5 C102 113.672 102.672 113 103.5 113 C104.328 113 105 113.672 105 114.5 C105 115.328 104.328 116 103.5 116 C102.672 116 102 115.328 102 114.5 Z" fill="#ffffff"/>
+    <path d="M90 123 C92.667 125 95.333 125 98 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M88 152 L88 168 L104 168 M88 160 L96 160 L96 168" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M48 123 L50.475 129.525 L57 132 L50.475 134.475 L48 141 L45.525 134.475 L39 132 L45.525 129.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner G.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
         </div>
       </div>
-
       <div class="card card-left">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#14</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↶</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-4</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M30 75 L72 42 L66 60 C127.333 50 158 76.667 158 140 L132 140 C132 96.667 110 79.333 66 88 L72 108 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M59 102 L62 102 C64.209 102 66 103.791 66 106 L66 132 C66 134.209 64.209 136 62 136 L59 136 C56.791 136 55 134.209 55 132 L55 106 C55 103.791 56.791 102 59 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M126 102 L129 102 C131.209 102 133 103.791 133 106 L133 132 C133 134.209 131.209 136 129 136 L126 136 C123.791 136 122 134.209 122 132 L122 106 C122 103.791 123.791 102 126 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 98 L114 98 C120.627 98 126 103.373 126 110 L126 128 C126 134.627 120.627 140 114 140 L74 140 C67.373 140 62 134.627 62 128 L62 110 C62 103.373 67.373 98 74 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M76 104 L112 104 C116.418 104 120 107.582 120 112 L120 122 C120 126.418 116.418 130 112 130 L76 130 C71.582 130 68 126.418 68 122 L68 112 C68 107.582 71.582 104 76 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 116.5 C72 111.806 75.806 108 80.5 108 C85.194 108 89 111.806 89 116.5 C89 121.194 85.194 125 80.5 125 C75.806 125 72 121.194 72 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M99 116.5 C99 111.806 102.806 108 107.5 108 C112.194 108 116 111.806 116 116.5 C116 121.194 112.194 125 107.5 125 C102.806 125 99 121.194 99 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 116 C74 113.791 75.791 112 78 112 C80.209 112 82 113.791 82 116 C82 118.209 80.209 120 78 120 C75.791 120 74 118.209 74 116 Z" fill="#0f172a"/>
+    <path d="M101 116 C101 113.791 102.791 112 105 112 C107.209 112 109 113.791 109 116 C109 118.209 107.209 120 105 120 C102.791 120 101 118.209 101 116 Z" fill="#0f172a"/>
+    <path d="M75 114.5 C75 113.672 75.672 113 76.5 113 C77.328 113 78 113.672 78 114.5 C78 115.328 77.328 116 76.5 116 C75.672 116 75 115.328 75 114.5 Z" fill="#ffffff"/>
+    <path d="M102 114.5 C102 113.672 102.672 113 103.5 113 C104.328 113 105 113.672 105 114.5 C105 115.328 104.328 116 103.5 116 C102.672 116 102 115.328 102 114.5 Z" fill="#ffffff"/>
+    <path d="M90 123 C92.667 125 95.333 125 98 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M88 152 L88 168 L104 168 M88 160 L96 160 L96 168" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M48 123 L50.475 129.525 L57 132 L50.475 134.475 L48 141 L45.525 134.475 L39 132 L45.525 129.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner G.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
         </div>
       </div>
-
       <div class="card card-left">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#15</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↶</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-4</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M30 75 L72 42 L66 60 C127.333 50 158 76.667 158 140 L132 140 C132 96.667 110 79.333 66 88 L72 108 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M59 102 L62 102 C64.209 102 66 103.791 66 106 L66 132 C66 134.209 64.209 136 62 136 L59 136 C56.791 136 55 134.209 55 132 L55 106 C55 103.791 56.791 102 59 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M126 102 L129 102 C131.209 102 133 103.791 133 106 L133 132 C133 134.209 131.209 136 129 136 L126 136 C123.791 136 122 134.209 122 132 L122 106 C122 103.791 123.791 102 126 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 98 L114 98 C120.627 98 126 103.373 126 110 L126 128 C126 134.627 120.627 140 114 140 L74 140 C67.373 140 62 134.627 62 128 L62 110 C62 103.373 67.373 98 74 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M76 104 L112 104 C116.418 104 120 107.582 120 112 L120 122 C120 126.418 116.418 130 112 130 L76 130 C71.582 130 68 126.418 68 122 L68 112 C68 107.582 71.582 104 76 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 116.5 C72 111.806 75.806 108 80.5 108 C85.194 108 89 111.806 89 116.5 C89 121.194 85.194 125 80.5 125 C75.806 125 72 121.194 72 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M99 116.5 C99 111.806 102.806 108 107.5 108 C112.194 108 116 111.806 116 116.5 C116 121.194 112.194 125 107.5 125 C102.806 125 99 121.194 99 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 116 C74 113.791 75.791 112 78 112 C80.209 112 82 113.791 82 116 C82 118.209 80.209 120 78 120 C75.791 120 74 118.209 74 116 Z" fill="#0f172a"/>
+    <path d="M101 116 C101 113.791 102.791 112 105 112 C107.209 112 109 113.791 109 116 C109 118.209 107.209 120 105 120 C102.791 120 101 118.209 101 116 Z" fill="#0f172a"/>
+    <path d="M75 114.5 C75 113.672 75.672 113 76.5 113 C77.328 113 78 113.672 78 114.5 C78 115.328 77.328 116 76.5 116 C75.672 116 75 115.328 75 114.5 Z" fill="#ffffff"/>
+    <path d="M102 114.5 C102 113.672 102.672 113 103.5 113 C104.328 113 105 113.672 105 114.5 C105 115.328 104.328 116 103.5 116 C102.672 116 102 115.328 102 114.5 Z" fill="#ffffff"/>
+    <path d="M90 123 C92.667 125 95.333 125 98 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M88 152 L88 168 L104 168 M88 160 L96 160 L96 168" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M48 123 L50.475 129.525 L57 132 L50.475 134.475 L48 141 L45.525 134.475 L39 132 L45.525 129.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner G.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
         </div>
       </div>
-
       <div class="card card-left">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#16</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↶</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-4</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M30 75 L72 42 L66 60 C127.333 50 158 76.667 158 140 L132 140 C132 96.667 110 79.333 66 88 L72 108 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M59 102 L62 102 C64.209 102 66 103.791 66 106 L66 132 C66 134.209 64.209 136 62 136 L59 136 C56.791 136 55 134.209 55 132 L55 106 C55 103.791 56.791 102 59 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M126 102 L129 102 C131.209 102 133 103.791 133 106 L133 132 C133 134.209 131.209 136 129 136 L126 136 C123.791 136 122 134.209 122 132 L122 106 C122 103.791 123.791 102 126 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 98 L114 98 C120.627 98 126 103.373 126 110 L126 128 C126 134.627 120.627 140 114 140 L74 140 C67.373 140 62 134.627 62 128 L62 110 C62 103.373 67.373 98 74 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M76 104 L112 104 C116.418 104 120 107.582 120 112 L120 122 C120 126.418 116.418 130 112 130 L76 130 C71.582 130 68 126.418 68 122 L68 112 C68 107.582 71.582 104 76 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 116.5 C72 111.806 75.806 108 80.5 108 C85.194 108 89 111.806 89 116.5 C89 121.194 85.194 125 80.5 125 C75.806 125 72 121.194 72 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M99 116.5 C99 111.806 102.806 108 107.5 108 C112.194 108 116 111.806 116 116.5 C116 121.194 112.194 125 107.5 125 C102.806 125 99 121.194 99 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 116 C74 113.791 75.791 112 78 112 C80.209 112 82 113.791 82 116 C82 118.209 80.209 120 78 120 C75.791 120 74 118.209 74 116 Z" fill="#0f172a"/>
+    <path d="M101 116 C101 113.791 102.791 112 105 112 C107.209 112 109 113.791 109 116 C109 118.209 107.209 120 105 120 C102.791 120 101 118.209 101 116 Z" fill="#0f172a"/>
+    <path d="M75 114.5 C75 113.672 75.672 113 76.5 113 C77.328 113 78 113.672 78 114.5 C78 115.328 77.328 116 76.5 116 C75.672 116 75 115.328 75 114.5 Z" fill="#ffffff"/>
+    <path d="M102 114.5 C102 113.672 102.672 113 103.5 113 C104.328 113 105 113.672 105 114.5 C105 115.328 104.328 116 103.5 116 C102.672 116 102 115.328 102 114.5 Z" fill="#ffffff"/>
+    <path d="M90 123 C92.667 125 95.333 125 98 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M88 152 L88 168 L104 168 M88 160 L96 160 L96 168" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M48 123 L50.475 129.525 L57 132 L50.475 134.475 L48 141 L45.525 134.475 L39 132 L45.525 129.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner G.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
         </div>
       </div>
-
       <div class="card card-left">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#17</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↶</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-4</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M30 75 L72 42 L66 60 C127.333 50 158 76.667 158 140 L132 140 C132 96.667 110 79.333 66 88 L72 108 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M59 102 L62 102 C64.209 102 66 103.791 66 106 L66 132 C66 134.209 64.209 136 62 136 L59 136 C56.791 136 55 134.209 55 132 L55 106 C55 103.791 56.791 102 59 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M126 102 L129 102 C131.209 102 133 103.791 133 106 L133 132 C133 134.209 131.209 136 129 136 L126 136 C123.791 136 122 134.209 122 132 L122 106 C122 103.791 123.791 102 126 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 98 L114 98 C120.627 98 126 103.373 126 110 L126 128 C126 134.627 120.627 140 114 140 L74 140 C67.373 140 62 134.627 62 128 L62 110 C62 103.373 67.373 98 74 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M76 104 L112 104 C116.418 104 120 107.582 120 112 L120 122 C120 126.418 116.418 130 112 130 L76 130 C71.582 130 68 126.418 68 122 L68 112 C68 107.582 71.582 104 76 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 116.5 C72 111.806 75.806 108 80.5 108 C85.194 108 89 111.806 89 116.5 C89 121.194 85.194 125 80.5 125 C75.806 125 72 121.194 72 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M99 116.5 C99 111.806 102.806 108 107.5 108 C112.194 108 116 111.806 116 116.5 C116 121.194 112.194 125 107.5 125 C102.806 125 99 121.194 99 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M74 116 C74 113.791 75.791 112 78 112 C80.209 112 82 113.791 82 116 C82 118.209 80.209 120 78 120 C75.791 120 74 118.209 74 116 Z" fill="#0f172a"/>
+    <path d="M101 116 C101 113.791 102.791 112 105 112 C107.209 112 109 113.791 109 116 C109 118.209 107.209 120 105 120 C102.791 120 101 118.209 101 116 Z" fill="#0f172a"/>
+    <path d="M75 114.5 C75 113.672 75.672 113 76.5 113 C77.328 113 78 113.672 78 114.5 C78 115.328 77.328 116 76.5 116 C75.672 116 75 115.328 75 114.5 Z" fill="#ffffff"/>
+    <path d="M102 114.5 C102 113.672 102.672 113 103.5 113 C104.328 113 105 113.672 105 114.5 C105 115.328 104.328 116 103.5 116 C102.672 116 102 115.328 102 114.5 Z" fill="#ffffff"/>
+    <path d="M90 123 C92.667 125 95.333 125 98 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M88 152 L88 168 L104 168 M88 160 L96 160 L96 168" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M48 123 L50.475 129.525 L57 132 L50.475 134.475 L48 141 L45.525 134.475 L39 132 L45.525 129.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner G.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
         </div>
       </div>
-
-      <div class="card card-left">
-        <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#18</span></div>
-          <div class="card-center">
-            <div class="card-icon">↶</div>
-            <div class="card-action-title">Tourner G.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
-          </div>
-          <div class="card-bottom-pill">🕹️ Joystick Gauche</div>
-        </div>
-      </div>
-
-      <!-- 6x Droite -->
+      
       <div class="card card-right">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#19</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↷</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-5</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fef2f2" stroke="#ef4444" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M170 75 L128 42 L134 60 C72.667 50 42 76.667 42 140 L68 140 C68 96.667 90 79.333 134 88 L128 108 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M71 102 L74 102 C76.209 102 78 103.791 78 106 L78 132 C78 134.209 76.209 136 74 136 L71 136 C68.791 136 67 134.209 67 132 L67 106 C67 103.791 68.791 102 71 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M138 102 L141 102 C143.209 102 145 103.791 145 106 L145 132 C145 134.209 143.209 136 141 136 L138 136 C135.791 136 134 134.209 134 132 L134 106 C134 103.791 135.791 102 138 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M86 98 L126 98 C132.627 98 138 103.373 138 110 L138 128 C138 134.627 132.627 140 126 140 L86 140 C79.373 140 74 134.627 74 128 L74 110 C74 103.373 79.373 98 86 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M88 104 L124 104 C128.418 104 132 107.582 132 112 L132 122 C132 126.418 128.418 130 124 130 L88 130 C83.582 130 80 126.418 80 122 L80 112 C80 107.582 83.582 104 88 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M84 116.5 C84 111.806 87.806 108 92.5 108 C97.194 108 101 111.806 101 116.5 C101 121.194 97.194 125 92.5 125 C87.806 125 84 121.194 84 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M111 116.5 C111 111.806 114.806 108 119.5 108 C124.194 108 128 111.806 128 116.5 C128 121.194 124.194 125 119.5 125 C114.806 125 111 121.194 111 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 116 C91 113.791 92.791 112 95 112 C97.209 112 99 113.791 99 116 C99 118.209 97.209 120 95 120 C92.791 120 91 118.209 91 116 Z" fill="#0f172a"/>
+    <path d="M118 116 C118 113.791 119.791 112 122 112 C124.209 112 126 113.791 126 116 C126 118.209 124.209 120 122 120 C119.791 120 118 118.209 118 116 Z" fill="#0f172a"/>
+    <path d="M94 114.5 C94 113.672 94.672 113 95.5 113 C96.328 113 97 113.672 97 114.5 C97 115.328 96.328 116 95.5 116 C94.672 116 94 115.328 94 114.5 Z" fill="#ffffff"/>
+    <path d="M121 114.5 C121 113.672 121.672 113 122.5 113 C123.328 113 124 113.672 124 114.5 C124 115.328 123.328 116 122.5 116 C121.672 116 121 115.328 121 114.5 Z" fill="#ffffff"/>
+    <path d="M102 123 C104.667 125 107.333 125 110 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 152 L112 168 L96 168 M112 160 L104 160 L104 168" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M152 126 L154.475 132.525 L161 135 L154.475 137.475 L152 144 L149.525 137.475 L143 135 L149.525 132.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner D.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Droite</div>
         </div>
       </div>
-
       <div class="card card-right">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#20</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↷</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-5</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fef2f2" stroke="#ef4444" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M170 75 L128 42 L134 60 C72.667 50 42 76.667 42 140 L68 140 C68 96.667 90 79.333 134 88 L128 108 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M71 102 L74 102 C76.209 102 78 103.791 78 106 L78 132 C78 134.209 76.209 136 74 136 L71 136 C68.791 136 67 134.209 67 132 L67 106 C67 103.791 68.791 102 71 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M138 102 L141 102 C143.209 102 145 103.791 145 106 L145 132 C145 134.209 143.209 136 141 136 L138 136 C135.791 136 134 134.209 134 132 L134 106 C134 103.791 135.791 102 138 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M86 98 L126 98 C132.627 98 138 103.373 138 110 L138 128 C138 134.627 132.627 140 126 140 L86 140 C79.373 140 74 134.627 74 128 L74 110 C74 103.373 79.373 98 86 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M88 104 L124 104 C128.418 104 132 107.582 132 112 L132 122 C132 126.418 128.418 130 124 130 L88 130 C83.582 130 80 126.418 80 122 L80 112 C80 107.582 83.582 104 88 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M84 116.5 C84 111.806 87.806 108 92.5 108 C97.194 108 101 111.806 101 116.5 C101 121.194 97.194 125 92.5 125 C87.806 125 84 121.194 84 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M111 116.5 C111 111.806 114.806 108 119.5 108 C124.194 108 128 111.806 128 116.5 C128 121.194 124.194 125 119.5 125 C114.806 125 111 121.194 111 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 116 C91 113.791 92.791 112 95 112 C97.209 112 99 113.791 99 116 C99 118.209 97.209 120 95 120 C92.791 120 91 118.209 91 116 Z" fill="#0f172a"/>
+    <path d="M118 116 C118 113.791 119.791 112 122 112 C124.209 112 126 113.791 126 116 C126 118.209 124.209 120 122 120 C119.791 120 118 118.209 118 116 Z" fill="#0f172a"/>
+    <path d="M94 114.5 C94 113.672 94.672 113 95.5 113 C96.328 113 97 113.672 97 114.5 C97 115.328 96.328 116 95.5 116 C94.672 116 94 115.328 94 114.5 Z" fill="#ffffff"/>
+    <path d="M121 114.5 C121 113.672 121.672 113 122.5 113 C123.328 113 124 113.672 124 114.5 C124 115.328 123.328 116 122.5 116 C121.672 116 121 115.328 121 114.5 Z" fill="#ffffff"/>
+    <path d="M102 123 C104.667 125 107.333 125 110 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 152 L112 168 L96 168 M112 160 L104 160 L104 168" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M152 126 L154.475 132.525 L161 135 L154.475 137.475 L152 144 L149.525 137.475 L143 135 L149.525 132.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner D.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Droite</div>
         </div>
       </div>
-
       <div class="card card-right">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#21</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↷</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-5</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fef2f2" stroke="#ef4444" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M170 75 L128 42 L134 60 C72.667 50 42 76.667 42 140 L68 140 C68 96.667 90 79.333 134 88 L128 108 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M71 102 L74 102 C76.209 102 78 103.791 78 106 L78 132 C78 134.209 76.209 136 74 136 L71 136 C68.791 136 67 134.209 67 132 L67 106 C67 103.791 68.791 102 71 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M138 102 L141 102 C143.209 102 145 103.791 145 106 L145 132 C145 134.209 143.209 136 141 136 L138 136 C135.791 136 134 134.209 134 132 L134 106 C134 103.791 135.791 102 138 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M86 98 L126 98 C132.627 98 138 103.373 138 110 L138 128 C138 134.627 132.627 140 126 140 L86 140 C79.373 140 74 134.627 74 128 L74 110 C74 103.373 79.373 98 86 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M88 104 L124 104 C128.418 104 132 107.582 132 112 L132 122 C132 126.418 128.418 130 124 130 L88 130 C83.582 130 80 126.418 80 122 L80 112 C80 107.582 83.582 104 88 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M84 116.5 C84 111.806 87.806 108 92.5 108 C97.194 108 101 111.806 101 116.5 C101 121.194 97.194 125 92.5 125 C87.806 125 84 121.194 84 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M111 116.5 C111 111.806 114.806 108 119.5 108 C124.194 108 128 111.806 128 116.5 C128 121.194 124.194 125 119.5 125 C114.806 125 111 121.194 111 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 116 C91 113.791 92.791 112 95 112 C97.209 112 99 113.791 99 116 C99 118.209 97.209 120 95 120 C92.791 120 91 118.209 91 116 Z" fill="#0f172a"/>
+    <path d="M118 116 C118 113.791 119.791 112 122 112 C124.209 112 126 113.791 126 116 C126 118.209 124.209 120 122 120 C119.791 120 118 118.209 118 116 Z" fill="#0f172a"/>
+    <path d="M94 114.5 C94 113.672 94.672 113 95.5 113 C96.328 113 97 113.672 97 114.5 C97 115.328 96.328 116 95.5 116 C94.672 116 94 115.328 94 114.5 Z" fill="#ffffff"/>
+    <path d="M121 114.5 C121 113.672 121.672 113 122.5 113 C123.328 113 124 113.672 124 114.5 C124 115.328 123.328 116 122.5 116 C121.672 116 121 115.328 121 114.5 Z" fill="#ffffff"/>
+    <path d="M102 123 C104.667 125 107.333 125 110 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 152 L112 168 L96 168 M112 160 L104 160 L104 168" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M152 126 L154.475 132.525 L161 135 L154.475 137.475 L152 144 L149.525 137.475 L143 135 L149.525 132.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner D.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Droite</div>
         </div>
       </div>
-
       <div class="card card-right">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#22</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↷</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-5</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fef2f2" stroke="#ef4444" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M170 75 L128 42 L134 60 C72.667 50 42 76.667 42 140 L68 140 C68 96.667 90 79.333 134 88 L128 108 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M71 102 L74 102 C76.209 102 78 103.791 78 106 L78 132 C78 134.209 76.209 136 74 136 L71 136 C68.791 136 67 134.209 67 132 L67 106 C67 103.791 68.791 102 71 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M138 102 L141 102 C143.209 102 145 103.791 145 106 L145 132 C145 134.209 143.209 136 141 136 L138 136 C135.791 136 134 134.209 134 132 L134 106 C134 103.791 135.791 102 138 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M86 98 L126 98 C132.627 98 138 103.373 138 110 L138 128 C138 134.627 132.627 140 126 140 L86 140 C79.373 140 74 134.627 74 128 L74 110 C74 103.373 79.373 98 86 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M88 104 L124 104 C128.418 104 132 107.582 132 112 L132 122 C132 126.418 128.418 130 124 130 L88 130 C83.582 130 80 126.418 80 122 L80 112 C80 107.582 83.582 104 88 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M84 116.5 C84 111.806 87.806 108 92.5 108 C97.194 108 101 111.806 101 116.5 C101 121.194 97.194 125 92.5 125 C87.806 125 84 121.194 84 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M111 116.5 C111 111.806 114.806 108 119.5 108 C124.194 108 128 111.806 128 116.5 C128 121.194 124.194 125 119.5 125 C114.806 125 111 121.194 111 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 116 C91 113.791 92.791 112 95 112 C97.209 112 99 113.791 99 116 C99 118.209 97.209 120 95 120 C92.791 120 91 118.209 91 116 Z" fill="#0f172a"/>
+    <path d="M118 116 C118 113.791 119.791 112 122 112 C124.209 112 126 113.791 126 116 C126 118.209 124.209 120 122 120 C119.791 120 118 118.209 118 116 Z" fill="#0f172a"/>
+    <path d="M94 114.5 C94 113.672 94.672 113 95.5 113 C96.328 113 97 113.672 97 114.5 C97 115.328 96.328 116 95.5 116 C94.672 116 94 115.328 94 114.5 Z" fill="#ffffff"/>
+    <path d="M121 114.5 C121 113.672 121.672 113 122.5 113 C123.328 113 124 113.672 124 114.5 C124 115.328 123.328 116 122.5 116 C121.672 116 121 115.328 121 114.5 Z" fill="#ffffff"/>
+    <path d="M102 123 C104.667 125 107.333 125 110 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 152 L112 168 L96 168 M112 160 L104 160 L104 168" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M152 126 L154.475 132.525 L161 135 L154.475 137.475 L152 144 L149.525 137.475 L143 135 L149.525 132.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner D.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Droite</div>
         </div>
       </div>
-
       <div class="card card-right">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#23</span></div>
+          <div class="card-top"><span>ROTATION</span><span>90°</span></div>
           <div class="card-center">
-            <div class="card-icon">↷</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-5</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fef2f2" stroke="#ef4444" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M170 75 L128 42 L134 60 C72.667 50 42 76.667 42 140 L68 140 C68 96.667 90 79.333 134 88 L128 108 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M71 102 L74 102 C76.209 102 78 103.791 78 106 L78 132 C78 134.209 76.209 136 74 136 L71 136 C68.791 136 67 134.209 67 132 L67 106 C67 103.791 68.791 102 71 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M138 102 L141 102 C143.209 102 145 103.791 145 106 L145 132 C145 134.209 143.209 136 141 136 L138 136 C135.791 136 134 134.209 134 132 L134 106 C134 103.791 135.791 102 138 102 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M86 98 L126 98 C132.627 98 138 103.373 138 110 L138 128 C138 134.627 132.627 140 126 140 L86 140 C79.373 140 74 134.627 74 128 L74 110 C74 103.373 79.373 98 86 98 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M88 104 L124 104 C128.418 104 132 107.582 132 112 L132 122 C132 126.418 128.418 130 124 130 L88 130 C83.582 130 80 126.418 80 122 L80 112 C80 107.582 83.582 104 88 104 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M84 116.5 C84 111.806 87.806 108 92.5 108 C97.194 108 101 111.806 101 116.5 C101 121.194 97.194 125 92.5 125 C87.806 125 84 121.194 84 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M111 116.5 C111 111.806 114.806 108 119.5 108 C124.194 108 128 111.806 128 116.5 C128 121.194 124.194 125 119.5 125 C114.806 125 111 121.194 111 116.5 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 116 C91 113.791 92.791 112 95 112 C97.209 112 99 113.791 99 116 C99 118.209 97.209 120 95 120 C92.791 120 91 118.209 91 116 Z" fill="#0f172a"/>
+    <path d="M118 116 C118 113.791 119.791 112 122 112 C124.209 112 126 113.791 126 116 C126 118.209 124.209 120 122 120 C119.791 120 118 118.209 118 116 Z" fill="#0f172a"/>
+    <path d="M94 114.5 C94 113.672 94.672 113 95.5 113 C96.328 113 97 113.672 97 114.5 C97 115.328 96.328 116 95.5 116 C94.672 116 94 115.328 94 114.5 Z" fill="#ffffff"/>
+    <path d="M121 114.5 C121 113.672 121.672 113 122.5 113 C123.328 113 124 113.672 124 114.5 C124 115.328 123.328 116 122.5 116 C121.672 116 121 115.328 121 114.5 Z" fill="#ffffff"/>
+    <path d="M102 123 C104.667 125 107.333 125 110 123" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 152 L112 168 L96 168 M112 160 L104 160 L104 168" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M152 126 L154.475 132.525 L161 135 L154.475 137.475 L152 144 L149.525 137.475 L143 135 L149.525 132.525 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">Tourner D.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
           </div>
           <div class="card-bottom-pill">🕹️ Joystick Droite</div>
         </div>
       </div>
-
-      <div class="card card-right">
+      
+      <div class="card card-action">
         <div class="card-inner">
-          <div class="card-top"><span>Pivot</span><span>#24</span></div>
+          <div class="card-top"><span>ACTION</span><span>MAGIQUE</span></div>
           <div class="card-center">
-            <div class="card-icon">↷</div>
-            <div class="card-action-title">Tourner D.</div>
-            <div class="card-detail">Pivot 90° sur place</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-6</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#faf5ff" stroke="#a855f7" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 40 L115.282 73.966 L152.308 78.004 L124.727 103.034 L132.328 139.496 L100 121 L67.672 139.496 L75.273 103.034 L47.692 78.004 L84.718 73.966 Z" fill="#fbbf24" stroke="#d97706" stroke-width="3.5" stroke-miterlimit="10"/>
+    <path d="M91 92.5 C91 90.015 92.119 88 93.5 88 C94.881 88 96 90.015 96 92.5 C96 94.985 94.881 97 93.5 97 C92.119 97 91 94.985 91 92.5 Z" fill="#0f172a"/>
+    <path d="M104 92.5 C104 90.015 105.119 88 106.5 88 C107.881 88 109 90.015 109 92.5 C109 94.985 107.881 97 106.5 97 C105.119 97 104 94.985 104 92.5 Z" fill="#0f172a"/>
+    <path d="M92 90.25 C92 89.56 92.448 89 93 89 C93.552 89 94 89.56 94 90.25 C94 90.94 93.552 91.5 93 91.5 C92.448 91.5 92 90.94 92 90.25 Z" fill="#ffffff"/>
+    <path d="M105 90.25 C105 89.56 105.448 89 106 89 C106.552 89 107 89.56 107 90.25 C107 90.94 106.552 91.5 106 91.5 C105.448 91.5 105 90.94 105 90.25 Z" fill="#ffffff"/>
+    <path d="M85 101.5 C85 100.119 86.567 99 88.5 99 C90.433 99 92 100.119 92 101.5 C92 102.881 90.433 104 88.5 104 C86.567 104 85 102.881 85 101.5 Z" fill="#f472b6"/>
+    <path d="M108 101.5 C108 100.119 109.567 99 111.5 99 C113.433 99 115 100.119 115 101.5 C115 102.881 113.433 104 111.5 104 C109.567 104 108 102.881 108 101.5 Z" fill="#f472b6"/>
+    <path d="M93 103 C97.667 109 102.333 109 107 103 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M148 64 L148 44 C152 45.333 156 44.667 160 42" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M140 64 C140 61.791 142.239 60 145 60 C147.761 60 150 61.791 150 64 C150 66.209 147.761 68 145 68 C142.239 68 140 66.209 140 64 Z" fill="#a855f7"/>
+    <path d="M54 68 L54 48 C57.333 49.333 60.667 48.667 64 46" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M46 68 C46 65.791 48.239 64 51 64 C53.761 64 56 65.791 56 68 C56 70.209 53.761 72 51 72 C48.239 72 46 70.209 46 68 Z" fill="#3b82f6"/>
+    <path d="M48 128 L50.828 135.172 L58 138 L50.828 140.828 L48 148 L45.172 140.828 L38 138 L45.172 135.172 Z" fill="#ec4899"/>
+    <path d="M152 125 L154.828 132.172 L162 135 L154.828 137.828 L152 145 L149.172 137.828 L142 135 L149.172 132.172 Z" fill="#10b981"/>
+    <path d="M100 18 L102.121 23.879 L108 26 L102.121 28.121 L100 34 L97.879 28.121 L92 26 L97.879 23.879 Z" fill="#f59e0b"/>
+  </g>
+</svg>
+            <div class="card-action-title">Action Magique</div>
           </div>
-          <div class="card-bottom-pill">🕹️ Joystick Droite</div>
+          <div class="card-bottom-pill">🔘 Clic Joystick</div>
         </div>
       </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Rappel Pédagogique : Tourner pivote le robot sur la même case, sans avancer.</span>
-      <span>mBot2 Code & Go</span>
+      <div class="card card-action">
+        <div class="card-inner">
+          <div class="card-top"><span>ACTION</span><span>MAGIQUE</span></div>
+          <div class="card-center">
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-6</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#faf5ff" stroke="#a855f7" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 40 L115.282 73.966 L152.308 78.004 L124.727 103.034 L132.328 139.496 L100 121 L67.672 139.496 L75.273 103.034 L47.692 78.004 L84.718 73.966 Z" fill="#fbbf24" stroke="#d97706" stroke-width="3.5" stroke-miterlimit="10"/>
+    <path d="M91 92.5 C91 90.015 92.119 88 93.5 88 C94.881 88 96 90.015 96 92.5 C96 94.985 94.881 97 93.5 97 C92.119 97 91 94.985 91 92.5 Z" fill="#0f172a"/>
+    <path d="M104 92.5 C104 90.015 105.119 88 106.5 88 C107.881 88 109 90.015 109 92.5 C109 94.985 107.881 97 106.5 97 C105.119 97 104 94.985 104 92.5 Z" fill="#0f172a"/>
+    <path d="M92 90.25 C92 89.56 92.448 89 93 89 C93.552 89 94 89.56 94 90.25 C94 90.94 93.552 91.5 93 91.5 C92.448 91.5 92 90.94 92 90.25 Z" fill="#ffffff"/>
+    <path d="M105 90.25 C105 89.56 105.448 89 106 89 C106.552 89 107 89.56 107 90.25 C107 90.94 106.552 91.5 106 91.5 C105.448 91.5 105 90.94 105 90.25 Z" fill="#ffffff"/>
+    <path d="M85 101.5 C85 100.119 86.567 99 88.5 99 C90.433 99 92 100.119 92 101.5 C92 102.881 90.433 104 88.5 104 C86.567 104 85 102.881 85 101.5 Z" fill="#f472b6"/>
+    <path d="M108 101.5 C108 100.119 109.567 99 111.5 99 C113.433 99 115 100.119 115 101.5 C115 102.881 113.433 104 111.5 104 C109.567 104 108 102.881 108 101.5 Z" fill="#f472b6"/>
+    <path d="M93 103 C97.667 109 102.333 109 107 103 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M148 64 L148 44 C152 45.333 156 44.667 160 42" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M140 64 C140 61.791 142.239 60 145 60 C147.761 60 150 61.791 150 64 C150 66.209 147.761 68 145 68 C142.239 68 140 66.209 140 64 Z" fill="#a855f7"/>
+    <path d="M54 68 L54 48 C57.333 49.333 60.667 48.667 64 46" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M46 68 C46 65.791 48.239 64 51 64 C53.761 64 56 65.791 56 68 C56 70.209 53.761 72 51 72 C48.239 72 46 70.209 46 68 Z" fill="#3b82f6"/>
+    <path d="M48 128 L50.828 135.172 L58 138 L50.828 140.828 L48 148 L45.172 140.828 L38 138 L45.172 135.172 Z" fill="#ec4899"/>
+    <path d="M152 125 L154.828 132.172 L162 135 L154.828 137.828 L152 145 L149.172 137.828 L142 135 L149.172 132.172 Z" fill="#10b981"/>
+    <path d="M100 18 L102.121 23.879 L108 26 L102.121 28.121 L100 34 L97.879 28.121 L92 26 L97.879 23.879 Z" fill="#f59e0b"/>
+  </g>
+</svg>
+            <div class="card-action-title">Action Magique</div>
+          </div>
+          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- ========================================================================
-       PLANCHE 3 : ACTIONS SPÉCIALES & ACCESSOIRES DE PLATEAU (12 CARTES)
+       PAGE 3 / 4 : RENFORTS, REPÈRES DU PLATEAU & OBSTACLES (12 CARTES)
        ======================================================================== -->
   <div class="page-a4">
-    <div class="page-title-banner">
-      <h2>Planche 3 : Actions Spéciales & Repères</h2>
-      <span>mBot2 Code & Go • Page 3/3</span>
+    <div class="screen-tag">
+      <span>Page 3/4 • Renforts & Plateau (2x Avancer + 2x Départ + 2x Trésor + 6x Murs)</span>
+      <span>12 cartes 60×60 mm</span>
     </div>
 
-    <div class="cards-grid">
-      <!-- 4x Action Surprise -->
-      <div class="card card-action">
+    <div class="cards-grid-3x4">
+      
+      <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Bonus</span><span>#25</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⭐</div>
-            <div class="card-action-title">Action !</div>
-            <div class="card-detail">Danse 360° & Son</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
+            <div class="card-action-title">Avancer</div>
           </div>
-          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
-      <div class="card card-action">
+      <div class="card card-forward">
         <div class="card-inner">
-          <div class="card-top"><span>Bonus</span><span>#26</span></div>
+          <div class="card-top"><span>MOUVEMENT</span><span>1 PAS</span></div>
           <div class="card-center">
-            <div class="card-icon">⭐</div>
-            <div class="card-action-title">Action !</div>
-            <div class="card-detail">Danse 360° & Son</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M100 25 L150 75 L122 75 L122 125 L78 125 L78 75 L50 75 Z" fill="#10b981" stroke="#047857" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M62 125 L66 125 C68.209 125 70 126.791 70 129 L70 157 C70 159.209 68.209 161 66 161 L62 161 C59.791 161 58 159.209 58 157 L58 129 C58 126.791 59.791 125 62 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M134 125 L138 125 C140.209 125 142 126.791 142 129 L142 157 C142 159.209 140.209 161 138 161 L134 161 C131.791 161 130 159.209 130 157 L130 129 C130 126.791 131.791 125 134 125 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 120 L122 120 C128.627 120 134 125.373 134 132 L134 153 C134 159.627 128.627 165 122 165 L78 165 C71.373 165 66 159.627 66 153 L66 132 C66 125.373 71.373 120 78 120 Z" fill="#0284c7" stroke="#0369a1" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M80 126 L120 126 C124.418 126 128 129.582 128 134 L128 146 C128 150.418 124.418 154 120 154 L80 154 C75.582 154 72 150.418 72 146 L72 134 C72 129.582 75.582 126 80 126 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M77 139 C77 134.029 81.029 130 86 130 C90.971 130 95 134.029 95 139 C95 143.971 90.971 148 86 148 C81.029 148 77 143.971 77 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M105 139 C105 134.029 109.029 130 114 130 C118.971 130 123 134.029 123 139 C123 143.971 118.971 148 114 148 C109.029 148 105 143.971 105 139 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M82 136 C82 133.791 83.791 132 86 132 C88.209 132 90 133.791 90 136 C90 138.209 88.209 140 86 140 C83.791 140 82 138.209 82 136 Z" fill="#0f172a"/>
+    <path d="M110 136 C110 133.791 111.791 132 114 132 C116.209 132 118 133.791 118 136 C118 138.209 116.209 140 114 140 C111.791 140 110 138.209 110 136 Z" fill="#0f172a"/>
+    <path d="M85 134.5 C85 133.672 85.672 133 86.5 133 C87.328 133 88 133.672 88 134.5 C88 135.328 87.328 136 86.5 136 C85.672 136 85 135.328 85 134.5 Z" fill="#ffffff"/>
+    <path d="M113 134.5 C113 133.672 113.672 133 114.5 133 C115.328 133 116 133.672 116 134.5 C116 135.328 115.328 136 114.5 136 C113.672 136 113 135.328 113 134.5 Z" fill="#ffffff"/>
+    <path d="M95 147 C98.333 149.667 101.667 149.667 105 147" fill="none" stroke="#38bdf8" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M72 172 L72 184 M100 174 L100 188 M128 172 L128 184" fill="none" stroke="#10b981" stroke-width="3" stroke-miterlimit="10"/>
+  </g>
+</svg>
+            <div class="card-action-title">Avancer</div>
           </div>
-          <div class="card-bottom-pill">🔘 Clic Joystick</div>
+          <div class="card-bottom-pill">🕹️ Joystick Haut</div>
         </div>
       </div>
-
-      <div class="card card-action">
-        <div class="card-inner">
-          <div class="card-top"><span>Bonus</span><span>#27</span></div>
-          <div class="card-center">
-            <div class="card-icon">⭐</div>
-            <div class="card-action-title">Action !</div>
-            <div class="card-detail">Danse 360° & Son</div>
-          </div>
-          <div class="card-bottom-pill">🔘 Clic Joystick</div>
-        </div>
-      </div>
-
-      <div class="card card-action">
-        <div class="card-inner">
-          <div class="card-top"><span>Bonus</span><span>#28</span></div>
-          <div class="card-center">
-            <div class="card-icon">⭐</div>
-            <div class="card-action-title">Action !</div>
-            <div class="card-detail">Danse 360° & Son</div>
-          </div>
-          <div class="card-bottom-pill">🔘 Clic Joystick</div>
-        </div>
-      </div>
-
-      <!-- 2x Départ (Start) -->
+      
       <div class="card card-start">
         <div class="card-inner">
-          <div class="card-top"><span>Plateau</span><span>Start</span></div>
+          <div class="card-top"><span>PLATEAU</span><span>START</span></div>
           <div class="card-center">
-            <div class="card-icon">🏁</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-7</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#f0fdf4" stroke="#22c55e" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M46 148 L154 148 C160.075 148 165 152.925 165 159 L165 159 C165 165.075 160.075 170 154 170 L46 170 C39.925 170 35 165.075 35 159 L35 159 C35 152.925 39.925 148 46 148 Z" fill="#22c55e" stroke="#16a34a" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M50 159 L70 159 M80 159 L100 159 M110 159 L130 159 M140 159 L150 159" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-miterlimit="10"/>
+    <path d="M55.5 38 L55.5 38 C57.433 38 59 39.567 59 41.5 L59 149.5 C59 151.433 57.433 153 55.5 153 L55.5 153 C53.567 153 52 151.433 52 149.5 L52 41.5 C52 39.567 53.567 38 55.5 38 Z" fill="#64748b" stroke="#334155" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M49.5 38 C49.5 34.686 52.186 32 55.5 32 C58.814 32 61.5 34.686 61.5 38 C61.5 41.314 58.814 44 55.5 44 C52.186 44 49.5 41.314 49.5 38 Z" fill="#fbbf24" stroke="#d97706" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M59 42 C86.333 38 114 39.333 142 46 L140 98 C113.333 91.333 86.333 90 59 94 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M59 42 C73 40 87 40.667 101 44 L101 70 C87 66.667 73 66 59 68 Z M122 45 C128.667 45.667 135.333 46 142 46 L141 72 C135 72 128.667 71.667 122 71 Z M80 67 C93.333 66.333 107.333 67.667 122 71 L121 97 C107 93.667 93.333 92.333 80 93 Z M132 72 C134.667 72 137.333 72 140 72 L140 98 C137.333 98 134.667 98 132 98 Z" fill="#0f172a"/>
+    <path d="M148 133 L150 133 C151.105 133 152 133.895 152 135 L152 149 C152 150.105 151.105 151 150 151 L148 151 C146.895 151 146 150.105 146 149 L146 135 C146 133.895 146.895 133 148 133 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M135 119 C135 111.268 141.268 105 149 105 C156.732 105 163 111.268 163 119 C163 126.732 156.732 133 149 133 C141.268 133 135 126.732 135 119 Z" fill="#22c55e" stroke="#15803d" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M140 113 C140 110.791 141.791 109 144 109 C146.209 109 148 110.791 148 113 C148 115.209 146.209 117 144 117 C141.791 117 140 115.209 140 113 Z" fill="#bbf7d0"/>
+  </g>
+</svg>
             <div class="card-action-title">DÉPART</div>
-            <div class="card-detail">Poser le robot ici</div>
           </div>
           <div class="card-bottom-pill">🟢 Bouton A (GO)</div>
         </div>
       </div>
-
       <div class="card card-start">
         <div class="card-inner">
-          <div class="card-top"><span>Plateau</span><span>Start</span></div>
+          <div class="card-top"><span>PLATEAU</span><span>START</span></div>
           <div class="card-center">
-            <div class="card-icon">🏁</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-7</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#f0fdf4" stroke="#22c55e" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M46 148 L154 148 C160.075 148 165 152.925 165 159 L165 159 C165 165.075 160.075 170 154 170 L46 170 C39.925 170 35 165.075 35 159 L35 159 C35 152.925 39.925 148 46 148 Z" fill="#22c55e" stroke="#16a34a" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M50 159 L70 159 M80 159 L100 159 M110 159 L130 159 M140 159 L150 159" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-miterlimit="10"/>
+    <path d="M55.5 38 L55.5 38 C57.433 38 59 39.567 59 41.5 L59 149.5 C59 151.433 57.433 153 55.5 153 L55.5 153 C53.567 153 52 151.433 52 149.5 L52 41.5 C52 39.567 53.567 38 55.5 38 Z" fill="#64748b" stroke="#334155" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M49.5 38 C49.5 34.686 52.186 32 55.5 32 C58.814 32 61.5 34.686 61.5 38 C61.5 41.314 58.814 44 55.5 44 C52.186 44 49.5 41.314 49.5 38 Z" fill="#fbbf24" stroke="#d97706" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M59 42 C86.333 38 114 39.333 142 46 L140 98 C113.333 91.333 86.333 90 59 94 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M59 42 C73 40 87 40.667 101 44 L101 70 C87 66.667 73 66 59 68 Z M122 45 C128.667 45.667 135.333 46 142 46 L141 72 C135 72 128.667 71.667 122 71 Z M80 67 C93.333 66.333 107.333 67.667 122 71 L121 97 C107 93.667 93.333 92.333 80 93 Z M132 72 C134.667 72 137.333 72 140 72 L140 98 C137.333 98 134.667 98 132 98 Z" fill="#0f172a"/>
+    <path d="M148 133 L150 133 C151.105 133 152 133.895 152 135 L152 149 C152 150.105 151.105 151 150 151 L148 151 C146.895 151 146 150.105 146 149 L146 135 C146 133.895 146.895 133 148 133 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M135 119 C135 111.268 141.268 105 149 105 C156.732 105 163 111.268 163 119 C163 126.732 156.732 133 149 133 C141.268 133 135 126.732 135 119 Z" fill="#22c55e" stroke="#15803d" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M140 113 C140 110.791 141.791 109 144 109 C146.209 109 148 110.791 148 113 C148 115.209 146.209 117 144 117 C141.791 117 140 115.209 140 113 Z" fill="#bbf7d0"/>
+  </g>
+</svg>
             <div class="card-action-title">DÉPART</div>
-            <div class="card-detail">Poser le robot ici</div>
           </div>
           <div class="card-bottom-pill">🟢 Bouton A (GO)</div>
         </div>
       </div>
-
-      <!-- 2x Trésor / Objectif -->
+      
       <div class="card card-treasure">
         <div class="card-inner">
-          <div class="card-top"><span>Objectif</span><span>But</span></div>
+          <div class="card-top"><span>OBJECTIF</span><span>BUT</span></div>
           <div class="card-center">
-            <div class="card-icon">🧀</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-8</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fefce8" stroke="#eab308" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M138 68 C158 78.667 166 92 162 108 L162 135 C166 119.667 158 105.333 138 92 Z" fill="#eab308" stroke="#ca8a04" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M38 122 L138 68 C158 78.667 166 92 162 108 Z" fill="#fde047" stroke="#ca8a04" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M38 122 L162 108 L162 136 L38 152 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M95 87 C95 84.239 99.029 82 104 82 C108.971 82 113 84.239 113 87 C113 89.761 108.971 92 104 92 C99.029 92 95 89.761 95 87 Z" fill="#eab308"/>
+    <path d="M68 105.5 C68 103.567 70.686 102 74 102 C77.314 102 80 103.567 80 105.5 C80 107.433 77.314 109 74 109 C70.686 109 68 107.433 68 105.5 Z" fill="#eab308"/>
+    <path d="M128 90.5 C128 88.015 131.358 86 135.5 86 C139.642 86 143 88.015 143 90.5 C143 92.985 139.642 95 135.5 95 C131.358 95 128 92.985 128 90.5 Z" fill="#eab308"/>
+    <path d="M58 134 C58 130.686 61.134 128 65 128 C68.866 128 72 130.686 72 134 C72 137.314 68.866 140 65 140 C61.134 140 58 137.314 58 134 Z" fill="#ca8a04"/>
+    <path d="M135 124 C135 120.686 138.582 118 143 118 C147.418 118 151 120.686 151 124 C151 127.314 147.418 130 143 130 C138.582 130 135 127.314 135 124 Z" fill="#ca8a04"/>
+    <path d="M105 140 C105 136.686 109.029 134 114 134 C118.971 134 123 136.686 123 140 C123 143.314 118.971 146 114 146 C109.029 146 105 143.314 105 140 Z" fill="#ca8a04"/>
+    <path d="M84 126 C87.333 122 90.667 122 94 126 M98 126 C101.333 122 104.667 122 108 126 M90 133 C94 139 98 139 102 133 Z" fill="#ef4444" stroke="#713f12" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M55 43 L57.828 52.172 L67 55 L57.828 57.828 L55 67 L52.172 57.828 L43 55 L52.172 52.172 Z" fill="#f59e0b"/>
+    <path d="M155 36 L157.121 42.879 L164 45 L157.121 47.121 L155 54 L152.879 47.121 L146 45 L152.879 42.879 Z" fill="#fbbf24"/>
+    <path d="M125 24 L126.768 28.232 L131 30 L126.768 31.768 L125 36 L123.232 31.768 L119 30 L123.232 28.232 Z" fill="#f59e0b"/>
+  </g>
+</svg>
             <div class="card-action-title">TRÉSOR</div>
-            <div class="card-detail">La cible à atteindre</div>
           </div>
           <div class="card-bottom-pill">🏆 Case Finale</div>
         </div>
       </div>
-
       <div class="card card-treasure">
         <div class="card-inner">
-          <div class="card-top"><span>Objectif</span><span>But</span></div>
+          <div class="card-top"><span>OBJECTIF</span><span>BUT</span></div>
           <div class="card-center">
-            <div class="card-icon">🏆</div>
-            <div class="card-action-title">VICTOIRE</div>
-            <div class="card-detail">Mission accomplie !</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-8</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fefce8" stroke="#eab308" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M138 68 C158 78.667 166 92 162 108 L162 135 C166 119.667 158 105.333 138 92 Z" fill="#eab308" stroke="#ca8a04" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M38 122 L138 68 C158 78.667 166 92 162 108 Z" fill="#fde047" stroke="#ca8a04" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M38 122 L162 108 L162 136 L38 152 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M95 87 C95 84.239 99.029 82 104 82 C108.971 82 113 84.239 113 87 C113 89.761 108.971 92 104 92 C99.029 92 95 89.761 95 87 Z" fill="#eab308"/>
+    <path d="M68 105.5 C68 103.567 70.686 102 74 102 C77.314 102 80 103.567 80 105.5 C80 107.433 77.314 109 74 109 C70.686 109 68 107.433 68 105.5 Z" fill="#eab308"/>
+    <path d="M128 90.5 C128 88.015 131.358 86 135.5 86 C139.642 86 143 88.015 143 90.5 C143 92.985 139.642 95 135.5 95 C131.358 95 128 92.985 128 90.5 Z" fill="#eab308"/>
+    <path d="M58 134 C58 130.686 61.134 128 65 128 C68.866 128 72 130.686 72 134 C72 137.314 68.866 140 65 140 C61.134 140 58 137.314 58 134 Z" fill="#ca8a04"/>
+    <path d="M135 124 C135 120.686 138.582 118 143 118 C147.418 118 151 120.686 151 124 C151 127.314 147.418 130 143 130 C138.582 130 135 127.314 135 124 Z" fill="#ca8a04"/>
+    <path d="M105 140 C105 136.686 109.029 134 114 134 C118.971 134 123 136.686 123 140 C123 143.314 118.971 146 114 146 C109.029 146 105 143.314 105 140 Z" fill="#ca8a04"/>
+    <path d="M84 126 C87.333 122 90.667 122 94 126 M98 126 C101.333 122 104.667 122 108 126 M90 133 C94 139 98 139 102 133 Z" fill="#ef4444" stroke="#713f12" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M55 43 L57.828 52.172 L67 55 L57.828 57.828 L55 67 L52.172 57.828 L43 55 L52.172 52.172 Z" fill="#f59e0b"/>
+    <path d="M155 36 L157.121 42.879 L164 45 L157.121 47.121 L155 54 L152.879 47.121 L146 45 L152.879 42.879 Z" fill="#fbbf24"/>
+    <path d="M125 24 L126.768 28.232 L131 30 L126.768 31.768 L125 36 L123.232 31.768 L119 30 L123.232 28.232 Z" fill="#f59e0b"/>
+  </g>
+</svg>
+            <div class="card-action-title">TRÉSOR</div>
           </div>
           <div class="card-bottom-pill">🏆 Case Finale</div>
         </div>
       </div>
-
-      <!-- 4x Obstacles / Murs -->
+      
       <div class="card card-wall">
         <div class="card-inner">
-          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-top"><span>OBSTACLE</span><span>DANGER</span></div>
           <div class="card-center">
-            <div class="card-icon">🛑</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-9</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fff1f2" stroke="#e11d48" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M133 107 L143 107 C144.657 107 146 108.343 146 110 L146 113 C146 114.657 144.657 116 143 116 L133 116 C131.343 116 130 114.657 130 113 L130 110 C130 108.343 131.343 107 133 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M109 107 L119 107 C120.657 107 122 108.343 122 110 L122 113 C122 114.657 120.657 116 119 116 L109 116 C107.343 116 106 114.657 106 113 L106 110 C106 108.343 107.343 107 109 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M51 114 L149 114 C152.314 114 155 116.686 155 120 L155 146 C155 149.314 152.314 152 149 152 L51 152 C47.686 152 45 149.314 45 146 L45 120 C45 116.686 47.686 114 51 114 Z" fill="#e11d48" stroke="#9f1239" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M63 71 L73 71 C74.657 71 76 72.343 76 74 L76 77 C76 78.657 74.657 80 73 80 L63 80 C61.343 80 60 78.657 60 77 L60 74 C60 72.343 61.343 71 63 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 71 L101 71 C102.657 71 104 72.343 104 74 L104 77 C104 78.657 102.657 80 101 80 L91 80 C89.343 80 88 78.657 88 77 L88 74 C88 72.343 89.343 71 91 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M56 78 L108 78 C111.314 78 114 80.686 114 84 L114 108 C114 111.314 111.314 114 108 114 L56 114 C52.686 114 50 111.314 50 108 L50 84 C50 80.686 52.686 78 56 78 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M137 75 L139 75 C140.105 75 141 75.895 141 77 L141 112 C141 113.105 140.105 114 139 114 L137 114 C135.895 114 135 113.105 135 112 L135 77 C135 75.895 135.895 75 137 75 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M120 60 C120 50.059 128.059 42 138 42 C147.941 42 156 50.059 156 60 C156 69.941 147.941 78 138 78 C128.059 78 120 69.941 120 60 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M129.5 56 L146.5 56 C148.433 56 150 57.567 150 59.5 L150 59.5 C150 61.433 148.433 63 146.5 63 L129.5 63 C127.567 63 126 61.433 126 59.5 L126 59.5 C126 57.567 127.567 56 129.5 56 Z" fill="#ffffff"/>
+    <path d="M75 132.5 C75 128.91 77.91 126 81.5 126 C85.09 126 88 128.91 88 132.5 C88 136.09 85.09 139 81.5 139 C77.91 139 75 136.09 75 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 132.5 C112 128.91 114.91 126 118.5 126 C122.09 126 125 128.91 125 132.5 C125 136.09 122.09 139 118.5 139 C114.91 139 112 136.09 112 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 132 C78 130.343 79.343 129 81 129 C82.657 129 84 130.343 84 132 C84 133.657 82.657 135 81 135 C79.343 135 78 133.657 78 132 Z" fill="#0f172a"/>
+    <path d="M115 132 C115 130.343 116.343 129 118 129 C119.657 129 121 130.343 121 132 C121 133.657 119.657 135 118 135 C116.343 135 115 133.657 115 132 Z" fill="#0f172a"/>
+    <path d="M96 139 C96 136.239 97.791 134 100 134 C102.209 134 104 136.239 104 139 C104 141.761 102.209 144 100 144 C97.791 144 96 141.761 96 139 Z" fill="#9f1239"/>
+  </g>
+</svg>
             <div class="card-action-title">MUR / STOP</div>
-            <div class="card-detail">Case interdite</div>
           </div>
           <div class="card-bottom-pill">⚠️ Interdit</div>
         </div>
       </div>
-
       <div class="card card-wall">
         <div class="card-inner">
-          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-top"><span>OBSTACLE</span><span>DANGER</span></div>
           <div class="card-center">
-            <div class="card-icon">🛑</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-9</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fff1f2" stroke="#e11d48" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M133 107 L143 107 C144.657 107 146 108.343 146 110 L146 113 C146 114.657 144.657 116 143 116 L133 116 C131.343 116 130 114.657 130 113 L130 110 C130 108.343 131.343 107 133 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M109 107 L119 107 C120.657 107 122 108.343 122 110 L122 113 C122 114.657 120.657 116 119 116 L109 116 C107.343 116 106 114.657 106 113 L106 110 C106 108.343 107.343 107 109 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M51 114 L149 114 C152.314 114 155 116.686 155 120 L155 146 C155 149.314 152.314 152 149 152 L51 152 C47.686 152 45 149.314 45 146 L45 120 C45 116.686 47.686 114 51 114 Z" fill="#e11d48" stroke="#9f1239" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M63 71 L73 71 C74.657 71 76 72.343 76 74 L76 77 C76 78.657 74.657 80 73 80 L63 80 C61.343 80 60 78.657 60 77 L60 74 C60 72.343 61.343 71 63 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 71 L101 71 C102.657 71 104 72.343 104 74 L104 77 C104 78.657 102.657 80 101 80 L91 80 C89.343 80 88 78.657 88 77 L88 74 C88 72.343 89.343 71 91 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M56 78 L108 78 C111.314 78 114 80.686 114 84 L114 108 C114 111.314 111.314 114 108 114 L56 114 C52.686 114 50 111.314 50 108 L50 84 C50 80.686 52.686 78 56 78 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M137 75 L139 75 C140.105 75 141 75.895 141 77 L141 112 C141 113.105 140.105 114 139 114 L137 114 C135.895 114 135 113.105 135 112 L135 77 C135 75.895 135.895 75 137 75 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M120 60 C120 50.059 128.059 42 138 42 C147.941 42 156 50.059 156 60 C156 69.941 147.941 78 138 78 C128.059 78 120 69.941 120 60 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M129.5 56 L146.5 56 C148.433 56 150 57.567 150 59.5 L150 59.5 C150 61.433 148.433 63 146.5 63 L129.5 63 C127.567 63 126 61.433 126 59.5 L126 59.5 C126 57.567 127.567 56 129.5 56 Z" fill="#ffffff"/>
+    <path d="M75 132.5 C75 128.91 77.91 126 81.5 126 C85.09 126 88 128.91 88 132.5 C88 136.09 85.09 139 81.5 139 C77.91 139 75 136.09 75 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 132.5 C112 128.91 114.91 126 118.5 126 C122.09 126 125 128.91 125 132.5 C125 136.09 122.09 139 118.5 139 C114.91 139 112 136.09 112 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 132 C78 130.343 79.343 129 81 129 C82.657 129 84 130.343 84 132 C84 133.657 82.657 135 81 135 C79.343 135 78 133.657 78 132 Z" fill="#0f172a"/>
+    <path d="M115 132 C115 130.343 116.343 129 118 129 C119.657 129 121 130.343 121 132 C121 133.657 119.657 135 118 135 C116.343 135 115 133.657 115 132 Z" fill="#0f172a"/>
+    <path d="M96 139 C96 136.239 97.791 134 100 134 C102.209 134 104 136.239 104 139 C104 141.761 102.209 144 100 144 C97.791 144 96 141.761 96 139 Z" fill="#9f1239"/>
+  </g>
+</svg>
             <div class="card-action-title">MUR / STOP</div>
-            <div class="card-detail">Case interdite</div>
           </div>
           <div class="card-bottom-pill">⚠️ Interdit</div>
         </div>
       </div>
-
       <div class="card card-wall">
         <div class="card-inner">
-          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-top"><span>OBSTACLE</span><span>DANGER</span></div>
           <div class="card-center">
-            <div class="card-icon">🛑</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-9</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fff1f2" stroke="#e11d48" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M133 107 L143 107 C144.657 107 146 108.343 146 110 L146 113 C146 114.657 144.657 116 143 116 L133 116 C131.343 116 130 114.657 130 113 L130 110 C130 108.343 131.343 107 133 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M109 107 L119 107 C120.657 107 122 108.343 122 110 L122 113 C122 114.657 120.657 116 119 116 L109 116 C107.343 116 106 114.657 106 113 L106 110 C106 108.343 107.343 107 109 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M51 114 L149 114 C152.314 114 155 116.686 155 120 L155 146 C155 149.314 152.314 152 149 152 L51 152 C47.686 152 45 149.314 45 146 L45 120 C45 116.686 47.686 114 51 114 Z" fill="#e11d48" stroke="#9f1239" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M63 71 L73 71 C74.657 71 76 72.343 76 74 L76 77 C76 78.657 74.657 80 73 80 L63 80 C61.343 80 60 78.657 60 77 L60 74 C60 72.343 61.343 71 63 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 71 L101 71 C102.657 71 104 72.343 104 74 L104 77 C104 78.657 102.657 80 101 80 L91 80 C89.343 80 88 78.657 88 77 L88 74 C88 72.343 89.343 71 91 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M56 78 L108 78 C111.314 78 114 80.686 114 84 L114 108 C114 111.314 111.314 114 108 114 L56 114 C52.686 114 50 111.314 50 108 L50 84 C50 80.686 52.686 78 56 78 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M137 75 L139 75 C140.105 75 141 75.895 141 77 L141 112 C141 113.105 140.105 114 139 114 L137 114 C135.895 114 135 113.105 135 112 L135 77 C135 75.895 135.895 75 137 75 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M120 60 C120 50.059 128.059 42 138 42 C147.941 42 156 50.059 156 60 C156 69.941 147.941 78 138 78 C128.059 78 120 69.941 120 60 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M129.5 56 L146.5 56 C148.433 56 150 57.567 150 59.5 L150 59.5 C150 61.433 148.433 63 146.5 63 L129.5 63 C127.567 63 126 61.433 126 59.5 L126 59.5 C126 57.567 127.567 56 129.5 56 Z" fill="#ffffff"/>
+    <path d="M75 132.5 C75 128.91 77.91 126 81.5 126 C85.09 126 88 128.91 88 132.5 C88 136.09 85.09 139 81.5 139 C77.91 139 75 136.09 75 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 132.5 C112 128.91 114.91 126 118.5 126 C122.09 126 125 128.91 125 132.5 C125 136.09 122.09 139 118.5 139 C114.91 139 112 136.09 112 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 132 C78 130.343 79.343 129 81 129 C82.657 129 84 130.343 84 132 C84 133.657 82.657 135 81 135 C79.343 135 78 133.657 78 132 Z" fill="#0f172a"/>
+    <path d="M115 132 C115 130.343 116.343 129 118 129 C119.657 129 121 130.343 121 132 C121 133.657 119.657 135 118 135 C116.343 135 115 133.657 115 132 Z" fill="#0f172a"/>
+    <path d="M96 139 C96 136.239 97.791 134 100 134 C102.209 134 104 136.239 104 139 C104 141.761 102.209 144 100 144 C97.791 144 96 141.761 96 139 Z" fill="#9f1239"/>
+  </g>
+</svg>
             <div class="card-action-title">MUR / STOP</div>
-            <div class="card-detail">Case interdite</div>
           </div>
           <div class="card-bottom-pill">⚠️ Interdit</div>
         </div>
       </div>
-
       <div class="card card-wall">
         <div class="card-inner">
-          <div class="card-top"><span>Obstacle</span><span>Danger</span></div>
+          <div class="card-top"><span>OBSTACLE</span><span>DANGER</span></div>
           <div class="card-center">
-            <div class="card-icon">🛑</div>
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-9</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fff1f2" stroke="#e11d48" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M133 107 L143 107 C144.657 107 146 108.343 146 110 L146 113 C146 114.657 144.657 116 143 116 L133 116 C131.343 116 130 114.657 130 113 L130 110 C130 108.343 131.343 107 133 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M109 107 L119 107 C120.657 107 122 108.343 122 110 L122 113 C122 114.657 120.657 116 119 116 L109 116 C107.343 116 106 114.657 106 113 L106 110 C106 108.343 107.343 107 109 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M51 114 L149 114 C152.314 114 155 116.686 155 120 L155 146 C155 149.314 152.314 152 149 152 L51 152 C47.686 152 45 149.314 45 146 L45 120 C45 116.686 47.686 114 51 114 Z" fill="#e11d48" stroke="#9f1239" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M63 71 L73 71 C74.657 71 76 72.343 76 74 L76 77 C76 78.657 74.657 80 73 80 L63 80 C61.343 80 60 78.657 60 77 L60 74 C60 72.343 61.343 71 63 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 71 L101 71 C102.657 71 104 72.343 104 74 L104 77 C104 78.657 102.657 80 101 80 L91 80 C89.343 80 88 78.657 88 77 L88 74 C88 72.343 89.343 71 91 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M56 78 L108 78 C111.314 78 114 80.686 114 84 L114 108 C114 111.314 111.314 114 108 114 L56 114 C52.686 114 50 111.314 50 108 L50 84 C50 80.686 52.686 78 56 78 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M137 75 L139 75 C140.105 75 141 75.895 141 77 L141 112 C141 113.105 140.105 114 139 114 L137 114 C135.895 114 135 113.105 135 112 L135 77 C135 75.895 135.895 75 137 75 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M120 60 C120 50.059 128.059 42 138 42 C147.941 42 156 50.059 156 60 C156 69.941 147.941 78 138 78 C128.059 78 120 69.941 120 60 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M129.5 56 L146.5 56 C148.433 56 150 57.567 150 59.5 L150 59.5 C150 61.433 148.433 63 146.5 63 L129.5 63 C127.567 63 126 61.433 126 59.5 L126 59.5 C126 57.567 127.567 56 129.5 56 Z" fill="#ffffff"/>
+    <path d="M75 132.5 C75 128.91 77.91 126 81.5 126 C85.09 126 88 128.91 88 132.5 C88 136.09 85.09 139 81.5 139 C77.91 139 75 136.09 75 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 132.5 C112 128.91 114.91 126 118.5 126 C122.09 126 125 128.91 125 132.5 C125 136.09 122.09 139 118.5 139 C114.91 139 112 136.09 112 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 132 C78 130.343 79.343 129 81 129 C82.657 129 84 130.343 84 132 C84 133.657 82.657 135 81 135 C79.343 135 78 133.657 78 132 Z" fill="#0f172a"/>
+    <path d="M115 132 C115 130.343 116.343 129 118 129 C119.657 129 121 130.343 121 132 C121 133.657 119.657 135 118 135 C116.343 135 115 133.657 115 132 Z" fill="#0f172a"/>
+    <path d="M96 139 C96 136.239 97.791 134 100 134 C102.209 134 104 136.239 104 139 C104 141.761 102.209 144 100 144 C97.791 144 96 141.761 96 139 Z" fill="#9f1239"/>
+  </g>
+</svg>
             <div class="card-action-title">MUR / STOP</div>
-            <div class="card-detail">Case interdite</div>
+          </div>
+          <div class="card-bottom-pill">⚠️ Interdit</div>
+        </div>
+      </div>
+      <div class="card card-wall">
+        <div class="card-inner">
+          <div class="card-top"><span>OBSTACLE</span><span>DANGER</span></div>
+          <div class="card-center">
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-9</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fff1f2" stroke="#e11d48" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M133 107 L143 107 C144.657 107 146 108.343 146 110 L146 113 C146 114.657 144.657 116 143 116 L133 116 C131.343 116 130 114.657 130 113 L130 110 C130 108.343 131.343 107 133 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M109 107 L119 107 C120.657 107 122 108.343 122 110 L122 113 C122 114.657 120.657 116 119 116 L109 116 C107.343 116 106 114.657 106 113 L106 110 C106 108.343 107.343 107 109 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M51 114 L149 114 C152.314 114 155 116.686 155 120 L155 146 C155 149.314 152.314 152 149 152 L51 152 C47.686 152 45 149.314 45 146 L45 120 C45 116.686 47.686 114 51 114 Z" fill="#e11d48" stroke="#9f1239" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M63 71 L73 71 C74.657 71 76 72.343 76 74 L76 77 C76 78.657 74.657 80 73 80 L63 80 C61.343 80 60 78.657 60 77 L60 74 C60 72.343 61.343 71 63 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 71 L101 71 C102.657 71 104 72.343 104 74 L104 77 C104 78.657 102.657 80 101 80 L91 80 C89.343 80 88 78.657 88 77 L88 74 C88 72.343 89.343 71 91 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M56 78 L108 78 C111.314 78 114 80.686 114 84 L114 108 C114 111.314 111.314 114 108 114 L56 114 C52.686 114 50 111.314 50 108 L50 84 C50 80.686 52.686 78 56 78 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M137 75 L139 75 C140.105 75 141 75.895 141 77 L141 112 C141 113.105 140.105 114 139 114 L137 114 C135.895 114 135 113.105 135 112 L135 77 C135 75.895 135.895 75 137 75 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M120 60 C120 50.059 128.059 42 138 42 C147.941 42 156 50.059 156 60 C156 69.941 147.941 78 138 78 C128.059 78 120 69.941 120 60 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M129.5 56 L146.5 56 C148.433 56 150 57.567 150 59.5 L150 59.5 C150 61.433 148.433 63 146.5 63 L129.5 63 C127.567 63 126 61.433 126 59.5 L126 59.5 C126 57.567 127.567 56 129.5 56 Z" fill="#ffffff"/>
+    <path d="M75 132.5 C75 128.91 77.91 126 81.5 126 C85.09 126 88 128.91 88 132.5 C88 136.09 85.09 139 81.5 139 C77.91 139 75 136.09 75 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 132.5 C112 128.91 114.91 126 118.5 126 C122.09 126 125 128.91 125 132.5 C125 136.09 122.09 139 118.5 139 C114.91 139 112 136.09 112 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 132 C78 130.343 79.343 129 81 129 C82.657 129 84 130.343 84 132 C84 133.657 82.657 135 81 135 C79.343 135 78 133.657 78 132 Z" fill="#0f172a"/>
+    <path d="M115 132 C115 130.343 116.343 129 118 129 C119.657 129 121 130.343 121 132 C121 133.657 119.657 135 118 135 C116.343 135 115 133.657 115 132 Z" fill="#0f172a"/>
+    <path d="M96 139 C96 136.239 97.791 134 100 134 C102.209 134 104 136.239 104 139 C104 141.761 102.209 144 100 144 C97.791 144 96 141.761 96 139 Z" fill="#9f1239"/>
+  </g>
+</svg>
+            <div class="card-action-title">MUR / STOP</div>
+          </div>
+          <div class="card-bottom-pill">⚠️ Interdit</div>
+        </div>
+      </div>
+      <div class="card card-wall">
+        <div class="card-inner">
+          <div class="card-top"><span>OBSTACLE</span><span>DANGER</span></div>
+          <div class="card-center">
+            <svg class="card-motif-svg" width="28mm" height="28mm"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"   viewBox="0 0 200 200">
+  <title>Untitled-9</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="M10 100 C10 50.294 50.294 10 100 10 C149.706 10 190 50.294 190 100 C190 149.706 149.706 190 100 190 C50.294 190 10 149.706 10 100 Z" fill="#fff1f2" stroke="#e11d48" stroke-width="4" stroke-miterlimit="10"/>
+    <path d="M133 107 L143 107 C144.657 107 146 108.343 146 110 L146 113 C146 114.657 144.657 116 143 116 L133 116 C131.343 116 130 114.657 130 113 L130 110 C130 108.343 131.343 107 133 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M109 107 L119 107 C120.657 107 122 108.343 122 110 L122 113 C122 114.657 120.657 116 119 116 L109 116 C107.343 116 106 114.657 106 113 L106 110 C106 108.343 107.343 107 109 107 Z" fill="#f43f5e" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M51 114 L149 114 C152.314 114 155 116.686 155 120 L155 146 C155 149.314 152.314 152 149 152 L51 152 C47.686 152 45 149.314 45 146 L45 120 C45 116.686 47.686 114 51 114 Z" fill="#e11d48" stroke="#9f1239" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M63 71 L73 71 C74.657 71 76 72.343 76 74 L76 77 C76 78.657 74.657 80 73 80 L63 80 C61.343 80 60 78.657 60 77 L60 74 C60 72.343 61.343 71 63 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M91 71 L101 71 C102.657 71 104 72.343 104 74 L104 77 C104 78.657 102.657 80 101 80 L91 80 C89.343 80 88 78.657 88 77 L88 74 C88 72.343 89.343 71 91 71 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M56 78 L108 78 C111.314 78 114 80.686 114 84 L114 108 C114 111.314 111.314 114 108 114 L56 114 C52.686 114 50 111.314 50 108 L50 84 C50 80.686 52.686 78 56 78 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3" stroke-miterlimit="10"/>
+    <path d="M137 75 L139 75 C140.105 75 141 75.895 141 77 L141 112 C141 113.105 140.105 114 139 114 L137 114 C135.895 114 135 113.105 135 112 L135 77 C135 75.895 135.895 75 137 75 Z" fill="#64748b" stroke="#334155" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path d="M120 60 C120 50.059 128.059 42 138 42 C147.941 42 156 50.059 156 60 C156 69.941 147.941 78 138 78 C128.059 78 120 69.941 120 60 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5" stroke-miterlimit="10"/>
+    <path d="M129.5 56 L146.5 56 C148.433 56 150 57.567 150 59.5 L150 59.5 C150 61.433 148.433 63 146.5 63 L129.5 63 C127.567 63 126 61.433 126 59.5 L126 59.5 C126 57.567 127.567 56 129.5 56 Z" fill="#ffffff"/>
+    <path d="M75 132.5 C75 128.91 77.91 126 81.5 126 C85.09 126 88 128.91 88 132.5 C88 136.09 85.09 139 81.5 139 C77.91 139 75 136.09 75 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M112 132.5 C112 128.91 114.91 126 118.5 126 C122.09 126 125 128.91 125 132.5 C125 136.09 122.09 139 118.5 139 C114.91 139 112 136.09 112 132.5 Z" fill="#ffffff" stroke="#9f1239" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M78 132 C78 130.343 79.343 129 81 129 C82.657 129 84 130.343 84 132 C84 133.657 82.657 135 81 135 C79.343 135 78 133.657 78 132 Z" fill="#0f172a"/>
+    <path d="M115 132 C115 130.343 116.343 129 118 129 C119.657 129 121 130.343 121 132 C121 133.657 119.657 135 118 135 C116.343 135 115 133.657 115 132 Z" fill="#0f172a"/>
+    <path d="M96 139 C96 136.239 97.791 134 100 134 C102.209 134 104 136.239 104 139 C104 141.761 102.209 144 100 144 C97.791 144 96 141.761 96 139 Z" fill="#9f1239"/>
+  </g>
+</svg>
+            <div class="card-action-title">MUR / STOP</div>
           </div>
           <div class="card-bottom-pill">⚠️ Interdit</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Piste de programmation détachable -->
-    <div class="timeline-strip">
-      <div class="timeline-slot">1ère carte</div>
-      <div class="timeline-slot">2e carte</div>
-      <div class="timeline-slot">3e carte</div>
-      <div class="timeline-slot">4e carte</div>
-      <div class="timeline-slot">5e carte</div>
-      <div class="timeline-slot">6e carte</div>
+  <!-- ========================================================================
+       PAGE 4 / 4 : PISTE DE PROGRAMMATION 3x3 (TAILLE RÉELLE 60x60 mm)
+       ======================================================================== -->
+  <div class="page-a4">
+    <div class="screen-tag">
+      <span>Page 4/4 • Piste de Programmation 3x3 (Taille Réelle 1:1)</span>
+      <span>Cases 60×60 mm</span>
     </div>
 
-    <div class="page-footer">
-      <span>La bande du bas peut être découpée pour servir de "Piste d'alignement" des cartes.</span>
-      <span>mBot2 Code & Go</span>
+    <div class="piste-grid-3x3">
+      <!-- Slot 1 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">1</div>
+          <div class="piste-slot-step">1er Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">➔</div>
+      </div>
+
+      <!-- Slot 2 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">2</div>
+          <div class="piste-slot-step">2e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">➔</div>
+      </div>
+
+      <!-- Slot 3 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">3</div>
+          <div class="piste-slot-step">3e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">⤵</div>
+      </div>
+
+      <!-- Slot 4 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">4</div>
+          <div class="piste-slot-step">4e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">➔</div>
+      </div>
+
+      <!-- Slot 5 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">5</div>
+          <div class="piste-slot-step">5e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">➔</div>
+      </div>
+
+      <!-- Slot 6 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">6</div>
+          <div class="piste-slot-step">6e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">⤵</div>
+      </div>
+
+      <!-- Slot 7 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">7</div>
+          <div class="piste-slot-step">7e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">➔</div>
+      </div>
+
+      <!-- Slot 8 -->
+      <div class="piste-slot">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge">8</div>
+          <div class="piste-slot-step">8e Pas</div>
+        </div>
+        <div class="piste-slot-body">
+          <div class="piste-ghost-card">🃏</div>
+        </div>
+        <div class="piste-slot-footer">➔</div>
+      </div>
+
+      <!-- Slot GO Final -->
+      <div class="piste-slot piste-slot-go">
+        <div class="piste-slot-header">
+          <div class="piste-slot-badge" style="font-size:10pt;">▶️</div>
+          <div class="piste-slot-step">Lancement !</div>
+        </div>
+        <div class="piste-slot-body" style="opacity:0.95;">
+          <div style="font-size:24pt;">🟢</div>
+        </div>
+        <div class="piste-slot-footer" style="color:#047857; font-weight:800;">Bouton GO (A) 🏁</div>
+      </div>
     </div>
   </div>
 
