@@ -34,7 +34,7 @@
       background: #1e293b;
       border: 1px solid #334155;
       border-radius: 16px;
-      padding: 18px 24px;
+      padding: 16px 24px;
       margin-bottom: 24px;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
       display: flex;
@@ -45,7 +45,7 @@
     }
 
     .screen-header h1 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: #38bdf8;
       display: flex;
@@ -55,7 +55,7 @@
 
     .screen-header p {
       font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: #94a3b8;
       margin-top: 4px;
     }
@@ -64,14 +64,14 @@
       background: linear-gradient(135deg, #0ea5e9, #2563eb);
       color: white;
       border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
       transition: all 0.2s ease;
     }
@@ -82,10 +82,10 @@
     }
 
     .screen-tag {
-      font-size: 8.5pt;
+      font-size: 8pt;
       font-weight: 700;
       color: #64748b;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       display: flex;
@@ -94,14 +94,15 @@
     }
 
     /* ==========================================================================
-       PLANCHE A4 PAYSAGE (297mm x 210mm)
+       PLANCHE A4 PAYSAGE (297mm x 210mm) - STRICT 0 DÉBORDEMENT
        ========================================================================== */
     .page-a4-landscape {
       width: 297mm;
-      height: 208mm;
+      height: 205mm;
+      max-height: 205mm;
       background: white;
       color: #1e293b;
-      padding: 8mm 12mm;
+      padding: 5mm 12mm 4mm 12mm;
       margin-bottom: 24px;
       border-radius: 4px;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
@@ -123,7 +124,7 @@
     }
 
     /* ==========================================================================
-       PLANCHE 1 : LE PLATEAU DE SIMULATION DE TABLE (4x3 CASES 60x60 mm)
+       PLANCHE 1 : LE PLATEAU DE TABLE (4x3 CASES 50x50 mm)
        ========================================================================== */
     .plateau-header-band {
       width: 100%;
@@ -131,39 +132,40 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #0284c7;
-      padding-bottom: 2mm;
-      margin-bottom: 2mm;
+      padding-bottom: 1.5mm;
+      margin-bottom: 1mm;
     }
 
     .plateau-title-group {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .plateau-icon-badge {
-      width: 10mm;
-      height: 10mm;
+      width: 8mm;
+      height: 8mm;
       background: linear-gradient(135deg, #0284c7, #2563eb);
       color: white;
-      border-radius: 8px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14pt;
+      font-size: 11pt;
     }
 
     .plateau-main-title {
-      font-size: 12pt;
+      font-size: 10.5pt;
       font-weight: 900;
       color: #0f172a;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      line-height: 1.1;
     }
 
     .plateau-sub-title {
       font-family: 'Inter', sans-serif;
-      font-size: 7.5pt;
+      font-size: 7pt;
       color: #64748b;
       font-weight: 600;
     }
@@ -172,25 +174,25 @@
     .boussole-container {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: #f1f5f9;
       border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 1.5mm 3.5mm;
+      border-radius: 8px;
+      padding: 1mm 3mm;
     }
 
     .boussole-title {
-      font-size: 6.8pt;
+      font-size: 6.2pt;
       font-weight: 800;
       color: #475569;
       text-transform: uppercase;
       text-align: right;
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
     .boussole-widget {
-      width: 14mm;
-      height: 14mm;
+      width: 11mm;
+      height: 11mm;
       position: relative;
       display: flex;
       align-items: center;
@@ -199,68 +201,50 @@
 
     .compass-cross-v {
       position: absolute;
-      width: 2px;
+      width: 1.5px;
       height: 100%;
       background: #cbd5e1;
     }
 
     .compass-cross-h {
       position: absolute;
-      height: 2px;
+      height: 1.5px;
       width: 100%;
       background: #cbd5e1;
     }
 
     .compass-tag {
       position: absolute;
-      font-size: 6pt;
+      font-size: 5.5pt;
       font-weight: 900;
-      padding: 1px 3px;
-      border-radius: 3px;
+      padding: 1px 2.5px;
+      border-radius: 2px;
+      line-height: 1;
     }
 
-    .tag-avant {
-      top: -3px;
-      background: #10b981;
-      color: white;
-    }
+    .tag-avant { top: -4px; background: #10b981; color: white; }
+    .tag-gauche { left: -8px; background: #3b82f6; color: white; }
+    .tag-droite { right: -8px; background: #f97316; color: white; }
+    .tag-arriere { bottom: -4px; background: #f59e0b; color: #0f172a; }
 
-    .tag-gauche {
-      left: -7px;
-      background: #3b82f6;
-      color: white;
-    }
-
-    .tag-droite {
-      right: -7px;
-      background: #f97316;
-      color: white;
-    }
-
-    .tag-arriere {
-      bottom: -3px;
-      background: #f59e0b;
-      color: #0f172a;
-    }
-
-    /* Grille de jeu 4 colonnes x 3 lignes */
-    .plateau-grid-area {
+    /* Zone centrale : Grille 4 colonnes x 3 lignes + En-têtes */
+    .plateau-center-zone {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 3mm;
+      gap: 2.5mm;
       margin: auto 0;
     }
 
     .coord-col-headers {
       display: grid;
-      grid-template-columns: repeat(4, 60mm);
-      gap: 3mm;
+      grid-template-columns: repeat(4, 52mm);
+      gap: 2.5mm;
       text-align: center;
       font-weight: 900;
-      font-size: 9pt;
+      font-size: 8pt;
       color: #0284c7;
-      margin-bottom: 1.5mm;
+      margin-bottom: 1mm;
     }
 
     .grid-with-row-headers {
@@ -271,11 +255,11 @@
 
     .coord-row-headers {
       display: grid;
-      grid-template-rows: repeat(3, 60mm);
-      gap: 3mm;
+      grid-template-rows: repeat(3, 49mm);
+      gap: 2.5mm;
       text-align: center;
       font-weight: 900;
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: #0284c7;
     }
 
@@ -288,55 +272,53 @@
 
     .plateau-cells-grid {
       display: grid;
-      grid-template-columns: repeat(4, 60mm);
-      grid-template-rows: repeat(3, 60mm);
-      gap: 3mm;
-      background: #e2e8f0;
-      padding: 2.5mm;
-      border-radius: 12px;
+      grid-template-columns: repeat(4, 52mm);
+      grid-template-rows: repeat(3, 49mm);
+      gap: 2.5mm;
+      background: #f1f5f9;
+      padding: 2mm;
+      border-radius: 10px;
       border: 2px solid #cbd5e1;
     }
 
-    /* Case du plateau 60mm x 60mm */
+    /* Case du plateau 52mm x 49mm (parfait pour Hot Wheels, figurine mBot2 et cartes) */
     .plateau-cell {
-      width: 60mm;
-      height: 60mm;
+      width: 52mm;
+      height: 49mm;
       background: #ffffff;
       border: 1.5px dashed #94a3b8;
-      border-radius: 8px;
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 2mm;
+      padding: 1.5mm;
       position: relative;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
-      transition: all 0.2s;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
     }
 
-    /* Coin avec croix de repérage laser */
     .cell-target-crosshair {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 14mm;
-      height: 14mm;
+      width: 12mm;
+      height: 12mm;
       opacity: 0.18;
       pointer-events: none;
     }
 
     .cell-coord-pill {
-      font-size: 6.5pt;
+      font-size: 6.2pt;
       font-weight: 800;
-      color: #94a3b8;
+      color: #64748b;
       background: #f1f5f9;
-      padding: 1px 4px;
+      padding: 1px 3.5px;
       border-radius: 3px;
       align-self: flex-start;
     }
 
     .cell-guide-text {
-      font-size: 5.8pt;
+      font-size: 5.5pt;
       font-weight: 700;
       color: #cbd5e1;
       text-align: center;
@@ -344,15 +326,15 @@
       letter-spacing: 0.3px;
     }
 
-    /* Pied de plateau avec règles visuelles */
+    /* Pied de plateau compact */
     .plateau-footer-bar {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1.5px solid #e2e8f0;
-      padding-top: 1.5mm;
-      font-size: 6.8pt;
+      padding-top: 1mm;
+      font-size: 6.2pt;
       color: #64748b;
       font-family: 'Inter', sans-serif;
     }
@@ -360,36 +342,36 @@
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       font-weight: 600;
     }
 
     .legend-badge {
-      width: 4.5mm;
-      height: 4.5mm;
-      border-radius: 3px;
+      width: 4mm;
+      height: 4mm;
+      border-radius: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 7pt;
+      font-size: 6pt;
     }
 
     /* ==========================================================================
-       PLANCHE 2 : PAPERCRAFT FIGURINE MBOT2 + PIONS DE TABLE
+       PLANCHE 2 : PAPERCRAFT FIGURINE MBOT2 + PIONS & MINI-TUILES
        ========================================================================== */
     .papercraft-container {
       width: 100%;
       height: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6mm;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 5mm;
       padding: 1mm 0;
     }
 
     .papercraft-box {
       border: 1.5px dashed #0284c7;
-      border-radius: 12px;
-      padding: 3mm 4mm;
+      border-radius: 10px;
+      padding: 2.5mm 3.5mm;
       background: #f8fafc;
       display: flex;
       flex-direction: column;
@@ -398,77 +380,59 @@
     }
 
     .papercraft-title {
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 900;
       color: #0284c7;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       border-bottom: 1px dashed #cbd5e1;
-      padding-bottom: 1.5mm;
+      padding-bottom: 1mm;
     }
 
     .instructions-mini {
       font-family: 'Inter', sans-serif;
-      font-size: 6.8pt;
+      font-size: 6.5pt;
       color: #475569;
-      line-height: 1.3;
-      margin-top: 1mm;
+      line-height: 1.25;
+      margin-top: 0.8mm;
     }
 
-    /* Patron 3D de la petite voiture mBot2 */
     .car-patron-svg {
       width: 100%;
-      max-height: 135mm;
+      max-height: 130mm;
       margin: auto 0;
     }
 
-    /* Pions jetons ronds et pupitres */
-    .tokens-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4mm;
-      justify-content: center;
-      align-items: center;
-      padding: 2mm 0;
+    .tokens-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3mm;
+      margin: auto 0;
     }
 
-    .token-circle {
-      width: 28mm;
-      height: 28mm;
-      border-radius: 50%;
-      border: 2px dashed #0284c7;
-      background: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      position: relative;
-    }
-
-    .token-pupitre {
-      width: 32mm;
-      height: 48mm;
-      border: 1.5px dashed #475569;
+    .token-card {
+      border: 1.5px dashed #94a3b8;
       border-radius: 6px;
       background: white;
+      padding: 2mm;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 2mm;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      gap: 1mm;
     }
 
-    .fold-line {
-      border-top: 1px dotted #94a3b8;
-      width: 100%;
-      margin: 1mm 0;
+    .token-card-title {
+      font-size: 6pt;
+      font-weight: 900;
+      text-transform: uppercase;
     }
 
     /* ==========================================================================
-       MEDIA PRINT : STRICT A4 PAYSAGE • ZÉRO DÉBORDEMENT
+       MEDIA PRINT : STRICT A4 PAYSAGE • ZÉRO TRONCATURE
        ========================================================================== */
     @page {
       size: A4 landscape;
@@ -492,10 +456,10 @@
       .page-a4-landscape {
         box-sizing: border-box !important;
         width: 297mm !important;
-        height: 208mm !important;
-        max-height: 208mm !important;
+        height: 205mm !important;
+        max-height: 205mm !important;
         margin: 0 auto !important;
-        padding: 6mm 10mm !important;
+        padding: 4mm 10mm !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         border: none !important;
@@ -522,7 +486,7 @@
   <div class="screen-header">
     <div>
       <h1>🗺️ Plateau de Simulation sur Table — mBot2 Code & Go</h1>
-      <p>Format A4 Paysage (Grille 4×3 de cases 60×60 mm) + Figurines Papercraft 3D pour simuler le robot avec une petite voiture avant de programmer.</p>
+      <p>Format A4 Paysage optimisé (Zéro troncature, cases parfaitement visibles) + Figurines Papercraft 3D pour simuler avant de coder.</p>
     </div>
     <button class="print-btn" onclick="window.print()">
       🖨️ Imprimer le Plateau & Figurines (Ctrl + P)
@@ -530,12 +494,12 @@
   </div>
 
   <!-- ========================================================================
-       PLANCHE 1 : LE PLATEAU DE TABLE (4 COLONNES x 3 LIGNES DE CASES 60x60 mm)
+       PLANCHE 1 : LE PLATEAU DE TABLE (4 COLONNES x 3 LIGNES)
        ======================================================================== -->
   <div class="page-a4-landscape">
     <div class="screen-tag">
-      <span>Planche 1/2 • Piste d'Entraînement sur Table (Cases 60×60 mm)</span>
-      <span>Échelle 1:1 pour Cartes & Petite Voiture</span>
+      <span>Planche 1/2 • Piste d'Entraînement sur Table (Cases 52×49 mm)</span>
+      <span>100% Adapté A4 Paysage • Zéro Troncature</span>
     </div>
 
     <!-- BANDEAU SUPÉRIEUR -->
@@ -562,8 +526,8 @@
       </div>
     </div>
 
-    <!-- ZONE DE GRILLE 4x3 -->
-    <div class="plateau-grid-area">
+    <!-- ZONE CENTRALE : GRILLE 4x3 -->
+    <div class="plateau-center-zone">
       <div>
         <!-- En-têtes colonnes 1 2 3 4 -->
         <div style="margin-left: 7mm;">
@@ -583,72 +547,72 @@
             <div class="coord-row-badge">C</div>
           </div>
 
-          <!-- Grille 4 colonnes x 3 lignes = 12 cases carrées 60x60 mm -->
+          <!-- Grille 4 colonnes x 3 lignes = 12 cases carrées -->
           <div class="plateau-cells-grid">
             <!-- Ligne A -->
             <div class="plateau-cell">
               <span class="cell-coord-pill">A1</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">A2</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">A3</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">A4</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
 
             <!-- Ligne B -->
             <div class="plateau-cell">
               <span class="cell-coord-pill">B1</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">B2</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">B3</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">B4</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
 
-            <!-- Ligne C -->
+            <!-- Ligne C (Parfaitement visible, zéro troncature !) -->
             <div class="plateau-cell">
               <span class="cell-coord-pill">C1</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">C2</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">C3</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
             <div class="plateau-cell">
               <span class="cell-coord-pill">C4</span>
               <svg class="cell-target-crosshair" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/><line x1="20" y1="2" x2="20" y2="38" stroke="#0284c7" stroke-width="1.5"/><line x1="2" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="1.5"/></svg>
-              <div class="cell-guide-text">Case 60×60 mm</div>
+              <div class="cell-guide-text">Case Table</div>
             </div>
           </div>
         </div>
@@ -657,15 +621,15 @@
 
     <!-- PIED DU PLATEAU : RÈGLES & DÉROULEMENT -->
     <div class="plateau-footer-bar">
-      <div class="legend-item"><span class="legend-badge" style="background:#14b8a6; color:white;">🏁</span> <strong>1. Départ :</strong> Pose la carte Départ et place ta petite voiture mBot2.</div>
-      <div class="legend-item"><span class="legend-badge" style="background:#ef4444; color:white;">🛑</span> <strong>2. Obstacles :</strong> Pose les cartes Mur sur les cases interdites.</div>
+      <div class="legend-item"><span class="legend-badge" style="background:#14b8a6; color:white;">🏁</span> <strong>1. Départ :</strong> Place la petite voiture mBot2.</div>
+      <div class="legend-item"><span class="legend-badge" style="background:#ef4444; color:white;">🛑</span> <strong>2. Obstacles :</strong> Pose les murs sur les cases interdites.</div>
       <div class="legend-item"><span class="legend-badge" style="background:#eab308; color:#0f172a;">🧀</span> <strong>3. Trésor :</strong> Place le Trésor sur la case d'arrivée.</div>
-      <div class="legend-item"><span class="legend-badge" style="background:#2563eb; color:white;">🃏</span> <strong>4. Réglette :</strong> Déplace la voiture d'1 pas et pose la carte d'action !</div>
+      <div class="legend-item"><span class="legend-badge" style="background:#2563eb; color:white;">🃏</span> <strong>4. Réglette :</strong> Déplace la voiture d'1 pas et pose la carte !</div>
     </div>
   </div>
 
   <!-- ========================================================================
-       PLANCHE 2 : LA PETITE VOITURE MBOT2 PAPERCRAFT 3D + PIONS DE TABLE
+       PLANCHE 2 : LA PETITE VOITURE MBOT2 PAPERCRAFT 3D + PIONS & MINI-TUILES
        ======================================================================== -->
   <div class="page-a4-landscape">
     <div class="screen-tag">
@@ -681,31 +645,26 @@
           <span>🚗 Patron 3D • Petite Voiture mBot2 (Papercraft)</span>
         </div>
         <div class="instructions-mini">
-          <strong>Comment monter la voiturette :</strong> Découpe selon les <strong>traits pleins</strong>. Plie selon les <strong>traits pointillés</strong>. Les yeux regardent devant !
+          <strong>Montage :</strong> Découpe selon les <strong>traits pleins</strong>. Plie selon les <strong>pointillés</strong>. Les yeux regardent devant !
         </div>
 
         <!-- SVG DU PATRON PAPERCRAFT MBOT2 -->
         <svg class="car-patron-svg" viewBox="0 0 320 230">
           <defs>
             <linearGradient id="gradTop" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0284c7"/>
-              <stop offset="100%" stop-color="#1e40af"/>
+              <stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#1e40af"/>
             </linearGradient>
             <linearGradient id="gradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#3b82f6"/>
-              <stop offset="100%" stop-color="#1d4ed8"/>
+              <stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/>
             </linearGradient>
             <linearGradient id="gradRight" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f97316"/>
-              <stop offset="100%" stop-color="#c2410c"/>
+              <stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#c2410c"/>
             </linearGradient>
             <linearGradient id="gradFront" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0f172a"/>
-              <stop offset="100%" stop-color="#1e293b"/>
+              <stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/>
             </linearGradient>
             <linearGradient id="gradBack" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#d97706"/>
-              <stop offset="100%" stop-color="#b45309"/>
+              <stop offset="0%" stop-color="#d97706"/><stop offset="100%" stop-color="#b45309"/>
             </linearGradient>
           </defs>
 
@@ -715,14 +674,11 @@
 
           <!-- FACE AVANT (YEUX CYBERPI) -->
           <rect x="120" y="20" width="80" height="50" rx="4" fill="url(#gradFront)" stroke="#0f172a" stroke-width="1.5"/>
-          <!-- Écran CyberPi -->
           <rect x="130" y="26" width="60" height="30" rx="3" fill="#000000" stroke="#38bdf8" stroke-width="1"/>
-          <!-- Yeux souriants -->
           <ellipse cx="148" cy="41" rx="8" ry="7" fill="#38bdf8"/>
           <circle cx="150" cy="39" r="2.5" fill="#ffffff"/>
           <ellipse cx="172" cy="41" rx="8" ry="7" fill="#38bdf8"/>
           <circle cx="174" cy="39" r="2.5" fill="#ffffff"/>
-          <!-- Capteur ultrason mBot2 -->
           <circle cx="140" cy="62" r="4.5" fill="#334155" stroke="#94a3b8"/>
           <circle cx="180" cy="62" r="4.5" fill="#334155" stroke="#94a3b8"/>
           <text x="160" y="65" font-size="6.5" font-weight="900" fill="#38bdf8" text-anchor="middle">AVANT</text>
@@ -740,7 +696,6 @@
 
           <!-- FLANC GAUCHE (BLEU) -->
           <rect x="38" y="72" width="80" height="60" rx="4" fill="url(#gradLeft)" stroke="#1d4ed8" stroke-width="1.5"/>
-          <!-- Roue gauche -->
           <rect x="44" y="112" width="68" height="15" rx="3" fill="#1e293b" stroke="#0f172a"/>
           <circle cx="58" cy="120" r="4" fill="#64748b"/>
           <circle cx="98" cy="120" r="4" fill="#64748b"/>
@@ -750,7 +705,6 @@
 
           <!-- FLANC DROIT (ORANGE) -->
           <rect x="202" y="72" width="80" height="60" rx="4" fill="url(#gradRight)" stroke="#c2410c" stroke-width="1.5"/>
-          <!-- Roue droite -->
           <rect x="208" y="112" width="68" height="15" rx="3" fill="#1e293b" stroke="#0f172a"/>
           <circle cx="222" cy="120" r="4" fill="#64748b"/>
           <circle cx="262" cy="120" r="4" fill="#64748b"/>
@@ -770,65 +724,72 @@
         </svg>
       </div>
 
-      <!-- COLONNE DROITE : PIONS JETONS & PUPITRES STAND-UP -->
+      <!-- COLONNE DROITE : PIONS & MINI-TUILES POUR LE PLATEAU -->
       <div class="papercraft-box">
         <div class="papercraft-title">
-          <span>♟️ Pions Ronds & Pupitres Éco-Découpe</span>
+          <span>♟️ Pions & Mini-Tuiles de Plateau</span>
         </div>
         <div class="instructions-mini">
-          <strong>Pions de secours :</strong> Si tu n'as pas monté la voiturette 3D, découpe ces jetons et pupitres pour marquer ta position et la direction du robot !
+          Découpe ces éléments pour créer tes défis directement sur les cases de la table !
         </div>
 
-        <div class="tokens-group">
-          <!-- Jeton Rond Robot Avant -->
-          <div class="token-circle" style="border-color:#10b981;">
-            <div style="font-size:16pt;">🤖</div>
-            <div style="font-size:5.5pt; font-weight:900; color:#047857;">mBot2 AVANT ➔</div>
-          </div>
-
-          <!-- Jeton Rond Fromage -->
-          <div class="token-circle" style="border-color:#eab308; background:#fefce8;">
-            <div style="font-size:16pt;">🧀</div>
-            <div style="font-size:5.5pt; font-weight:900; color:#a16207;">CIBLE TRÉSOR</div>
-          </div>
-
-          <!-- Jeton Rond Départ -->
-          <div class="token-circle" style="border-color:#14b8a6; background:#f0fdfa;">
+        <div class="tokens-grid">
+          <!-- Mini Tuile Départ -->
+          <div class="token-card" style="border-color:#14b8a6; background:#f0fdfa;">
             <div style="font-size:16pt;">🏁</div>
-            <div style="font-size:5.5pt; font-weight:900; color:#0f766e;">START DÉPART</div>
+            <div class="token-card-title" style="color:#0f766e;">DÉPART</div>
           </div>
 
-          <!-- Jeton Rond Mur -->
-          <div class="token-circle" style="border-color:#ef4444; background:#fef2f2;">
-            <div style="font-size:16pt;">🛑</div>
-            <div style="font-size:5.5pt; font-weight:900; color:#b91c1c;">MUR INTERDIT</div>
+          <!-- Mini Tuile Trésor -->
+          <div class="token-card" style="border-color:#eab308; background:#fefce8;">
+            <div style="font-size:16pt;">🧀</div>
+            <div class="token-card-title" style="color:#a16207;">TRÉSOR</div>
+          </div>
+
+          <!-- Mini Tuile Mur 1 -->
+          <div class="token-card" style="border-color:#ef4444; background:#fef2f2;">
+            <div style="font-size:16pt;">🧱</div>
+            <div class="token-card-title" style="color:#b91c1c;">MUR 1</div>
+          </div>
+
+          <!-- Mini Tuile Mur 2 -->
+          <div class="token-card" style="border-color:#ef4444; background:#fef2f2;">
+            <div style="font-size:16pt;">🧱</div>
+            <div class="token-card-title" style="color:#b91c1c;">MUR 2</div>
+          </div>
+
+          <!-- Mini Tuile Mur 3 -->
+          <div class="token-card" style="border-color:#ef4444; background:#fef2f2;">
+            <div style="font-size:16pt;">🧱</div>
+            <div class="token-card-title" style="color:#b91c1c;">MUR 3</div>
+          </div>
+
+          <!-- Jeton Rond Robot Pilote -->
+          <div class="token-card" style="border-color:#0284c7; background:#f0f9ff;">
+            <div style="font-size:16pt;">🤖</div>
+            <div class="token-card-title" style="color:#0369a1;">mBot2 PION</div>
           </div>
         </div>
 
-        <!-- 2 PUPITRES STAND-UP À PLIER EN CHEVALET -->
-        <div style="display:flex; justify-content:space-around; align-items:center; margin-top:2mm;">
-          <!-- Pupitre 1 : Robot Pilote -->
-          <div class="token-pupitre" style="border-color:#0284c7;">
-            <div style="font-size:6pt; font-weight:800; color:#0284c7; text-transform:uppercase;">Face Avant</div>
-            <div style="font-size:18pt;">🤖</div>
-            <div style="font-size:6.5pt; font-weight:900; color:#0f172a;">mBot2 PILOTE</div>
-            <div class="fold-line"></div>
-            <div style="font-size:5.5pt; color:#64748b;">(Plier ici)</div>
-            <div class="fold-line"></div>
-            <div style="font-size:5.5pt; font-weight:700; color:#0284c7;">SOCLE STAND-UP</div>
+        <!-- 2 PUPITRES STAND-UP -->
+        <div style="display:flex; justify-content:space-around; align-items:center; margin-top:1.5mm;">
+          <div style="width:26mm; height:34mm; border:1.5px dashed #0284c7; border-radius:4px; padding:1.5mm; text-align:center; background:white;">
+            <div style="font-size:5.5pt; font-weight:800; color:#0284c7;">Face Avant</div>
+            <div style="font-size:13pt;">🤖</div>
+            <div style="font-size:5.5pt; font-weight:900; color:#0f172a;">mBot2</div>
+            <div style="border-top:1px dotted #94a3b8; margin:1mm 0;"></div>
+            <div style="font-size:5pt; color:#64748b;">Socle à plier</div>
           </div>
 
-          <!-- Pupitre 2 : Mur Brique Lego -->
-          <div class="token-pupitre" style="border-color:#ef4444;">
-            <div style="font-size:6pt; font-weight:800; color:#ef4444; text-transform:uppercase;">Danger Mur</div>
-            <div style="font-size:18pt;">🧱</div>
-            <div style="font-size:6.5pt; font-weight:900; color:#b91c1c;">OBSTACLE STOP</div>
-            <div class="fold-line"></div>
-            <div style="font-size:5.5pt; color:#64748b;">(Plier ici)</div>
-            <div class="fold-line"></div>
-            <div style="font-size:5.5pt; font-weight:700; color:#ef4444;">SOCLE STAND-UP</div>
+          <div style="width:26mm; height:34mm; border:1.5px dashed #ef4444; border-radius:4px; padding:1.5mm; text-align:center; background:white;">
+            <div style="font-size:5.5pt; font-weight:800; color:#ef4444;">Danger</div>
+            <div style="font-size:13pt;">🛑</div>
+            <div style="font-size:5.5pt; font-weight:900; color:#b91c1c;">MUR STOP</div>
+            <div style="border-top:1px dotted #94a3b8; margin:1mm 0;"></div>
+            <div style="font-size:5pt; color:#64748b;">Socle à plier</div>
           </div>
         </div>
+
       </div>
 
     </div>
