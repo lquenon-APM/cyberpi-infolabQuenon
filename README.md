@@ -30,7 +30,7 @@ cyberpi-infolabQuenon/
 ### 1. 🐭 [Code & Go Explorer](./01_code_and_go_explorer/)
 * **Concept :** Une fois le code injecté, l'ordinateur est éteint. L'enfant programme les déplacements du robot directement avec le joystick de la CyberPi.
 * **Moteurs encodeurs asservis :** Des pas de 25 cm et des rotations à 90° au millimètre près.
-* **Matériel physique :** [Planches A4 de 36 cartes fléchées prêtes à imprimer](./01_code_and_go_explorer/cartes/cartes_a_imprimer.html).
+* **Matériel physique :** [Kit de 36 cartes prêtes à imprimer et tapis de codage](./01_code_and_go_explorer/cartes/cartes_a_imprimer.html) et [Plateau de simulation sur table A4 Paysage avec mascotte mBot2 papercraft 3D](./01_code_and_go_explorer/plateau/plateau_simulation_a4.html).
 
 ### 2. 🕹️ [Arcade & Game Dev](./02_arcade_game_dev/)
 * **Concept :** Transformer la CyberPi en console de jeux vidéo portable de poche.
