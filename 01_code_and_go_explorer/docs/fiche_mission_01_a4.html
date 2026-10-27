@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche Mission 001 — Le Réveil de NÉO & Le Premier Cristal (5 ans)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       RESET & BASE SCREEN STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .screen-header {
+      max-width: 900px;
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .screen-header h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .screen-header p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+    }
+
+    .screen-tag {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       PLANCHE A4 PORTRAIT (210mm x 297mm)
+       ========================================================================== */
+    .page-a4 {
+      width: 210mm;
+      height: 292mm;
+      max-height: 292mm;
+      background: white;
+      color: #1e293b;
+      padding: 10mm 12mm;
+      margin-bottom: 24px;
+      border-radius: 4px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .page-a4:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    /* ==========================================================================
+       PAGE 1 : CARNET DE VOL DU COMMANDANT (POUR L'ENFANT DE 5 ANS)
+       ========================================================================== */
+    .kid-header {
+      border: 2px solid #0284c7;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      padding: 3mm 4mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .kid-title-block h2 {
+      font-size: 13pt;
+      font-weight: 900;
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kid-title-block p {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #0284c7;
+      margin-top: 1mm;
+    }
+
+    .kid-badge-box {
+      border: 2px dashed #0284c7;
+      border-radius: 10px;
+      background: white;
+      padding: 1.5mm 3mm;
+      text-align: center;
+      min-width: 45mm;
+    }
+
+    .badge-label {
+      font-size: 6.5pt;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+
+    .badge-name-line {
+      font-size: 10pt;
+      font-weight: 900;
+      color: #0f172a;
+      border-bottom: 1.5px dotted #94a3b8;
+      padding-bottom: 1mm;
+      margin-top: 1mm;
+    }
+
+    /* Les 3 Micro-Défis */
+    .challenges-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5mm;
+      margin: 2mm 0;
+    }
+
+    .challenge-card {
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 3mm 3.5mm;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .challenge-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.5mm;
+    }
+
+    .challenge-badge-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9.5pt;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .step-pill {
+      background: #0284c7;
+      color: white;
+      font-size: 7.5pt;
+      font-weight: 900;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    .star-check-box {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #fefce8;
+      border: 1.5px solid #facc15;
+      border-radius: 6px;
+      padding: 1mm 2.5mm;
+      font-size: 7.5pt;
+      font-weight: 800;
+      color: #854d0e;
+    }
+
+    .star-empty {
+      font-size: 12pt;
+      color: #cbd5e1;
+      line-height: 1;
+    }
+
+    .challenge-body {
+      display: grid;
+      grid-template-columns: 80mm 1fr;
+      gap: 4mm;
+      align-items: center;
+    }
+
+    /* Schéma visuel de la grille */
+    .mini-grid-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 1.5mm;
+      background: #f1f5f9;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 1.5mm;
+      height: 38mm;
+    }
+
+    .mini-cell {
+      background: white;
+      border: 1px dashed #cbd5e1;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13pt;
+      position: relative;
+    }
+
+    .cell-label-corner {
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      font-size: 4.5pt;
+      font-weight: 800;
+      color: #94a3b8;
+    }
+
+    .cell-robot {
+      background: #e0f2fe;
+      border: 1.5px solid #0284c7;
+    }
+
+    .cell-target {
+      background: #fef9c3;
+      border: 1.5px solid #ca8a04;
+    }
+
+    .cell-wall {
+      background: #fee2e2;
+      border: 1.5px solid #dc2626;
+    }
+
+    /* Zone d'action de l'enfant (Cartes attendues) */
+    .code-action-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5mm;
+    }
+
+    .code-instruction-text {
+      font-size: 7.2pt;
+      font-weight: 700;
+      color: #475569;
+      line-height: 1.25;
+    }
+
+    .slots-row {
+      display: flex;
+      gap: 2mm;
+      align-items: center;
+      margin-top: 1mm;
+    }
+
+    .slot-kid {
+      width: 14mm;
+      height: 14mm;
+      border: 1.5px dashed #94a3b8;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f8fafc;
+      font-size: 10pt;
+      position: relative;
+    }
+
+    .slot-kid-arrow {
+      font-size: 7.5pt;
+      color: #cbd5e1;
+    }
+
+    .slot-green { border-color: #10b981; background: #ecfdf5; color: #047857; font-weight: 900; }
+    .slot-blue  { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; font-weight: 900; }
+    .slot-orange{ border-color: #f97316; background: #fff7ed; color: #c2410c; font-weight: 900; }
+    .slot-purple{ border-color: #a855f7; background: #faf5ff; color: #7e22ce; font-weight: 900; }
+
+    /* Pied de page Récompense */
+    .kid-footer-diploma {
+      border: 2px dashed #eab308;
+      border-radius: 12px;
+      background: #fefce8;
+      padding: 2.5mm 4mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .diploma-text h3 {
+      font-size: 9pt;
+      font-weight: 900;
+      color: #a16207;
+      text-transform: uppercase;
+    }
+
+    .diploma-text p {
+      font-size: 6.8pt;
+      color: #854d0e;
+      font-weight: 600;
+      margin-top: 0.5mm;
+    }
+
+    .stars-total {
+      display: flex;
+      gap: 4px;
+      font-size: 16pt;
+    }
+
+    /* ==========================================================================
+       PAGE 2 : LE GUIDE DE DIALOGUE & ANIMATION DU PAPA (BASE STELLAIRE)
+       ========================================================================== */
+    .papa-header {
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 2mm;
+      margin-bottom: 2mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .papa-header h2 {
+      font-size: 12pt;
+      font-weight: 900;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .papa-subtitle {
+      font-size: 7.2pt;
+      font-family: 'Inter', sans-serif;
+      color: #64748b;
+    }
+
+    .role-badge-papa {
+      background: #1e293b;
+      color: #38bdf8;
+      font-size: 7.2pt;
+      font-weight: 800;
+      padding: 1.5mm 3.5mm;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .dialogue-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5mm;
+      flex-grow: 1;
+    }
+
+    .step-box-papa {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 2.5mm 3.5mm;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5mm;
+    }
+
+    .step-header-papa {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 1mm;
+    }
+
+    .voice-bubble {
+      background: #ffffff;
+      border-left: 3px solid #0284c7;
+      border-radius: 0 6px 6px 0;
+      padding: 1.5mm 3mm;
+      font-style: italic;
+      font-size: 7.2pt;
+      color: #0369a1;
+      line-height: 1.3;
+      margin: 1mm 0;
+    }
+
+    .papa-action-list {
+      font-size: 6.8pt;
+      font-family: 'Inter', sans-serif;
+      color: #334155;
+      line-height: 1.35;
+      margin-left: 3.5mm;
+    }
+
+    .tip-callout {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 6px;
+      padding: 1.5mm 2.5mm;
+      font-size: 6.5pt;
+      color: #166534;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================================
+       MEDIA PRINT : STRICT A4 PORTRAIT • 2 PAGES EXACTES • 0 PAGE BLANCHE
+       ========================================================================== */
+    @page {
+      size: A4 portrait;
+      margin: 0mm;
+    }
+
+    @media print {
+      html, body {
+        width: 210mm !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .screen-header,
+      .screen-tag {
+        display: none !important;
+      }
+      .page-a4 {
+        box-sizing: border-box !important;
+        width: 210mm !important;
+        height: 292mm !important;
+        max-height: 292mm !important;
+        margin: 0 auto !important;
+        padding: 8mm 10mm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        page-break-after: page !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+      }
+      .page-a4:last-of-type {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRE D'ACTION ÉCRAN -->
+  <div class="screen-header">
+    <div>
+      <h1>📋 Fiche Séance 001 : Le Réveil de NÉO & Le Premier Cristal</h1>
+      <p>Activité scénarisée pour enfant de 5 ans (Cycle 1 / Maternelle 3e - CP). Planche 1 : Carnet Enfant • Planche 2 : Guide Papa.</p>
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ Imprimer la Fiche d'Activité (Ctrl + P)
+    </button>
+  </div>
+
+  <!-- ========================================================================
+       PAGE 1 / 2 : LE CARNET DE VOL DU COMMANDANT (ENFANT DE 5 ANS)
+       ======================================================================== -->
+  <div class="page-a4">
+    <div class="screen-tag">
+      <span>Page 1/2 • Carnet de Mission du Commandant (À poser devant l'enfant)</span>
+      <span>Spécial 5 ans (Visuel & Étoiles)</span>
+    </div>
+
+    <!-- EN-TÊTE IMMERSIF -->
+    <div class="kid-header">
+      <div class="kid-title-block">
+        <h2>🚀 MISSION 001 : LE RÉVEIL DE NÉO</h2>
+        <p>Aide ton robot à retrouver son premier Cristal d'Énergie !</p>
+      </div>
+      <div class="kid-badge-box">
+        <div class="badge-label">Officier de Vol</div>
+        <div class="badge-name-line">Commandant : ____________</div>
+      </div>
+    </div>
+
+    <!-- LES 3 MICRO-DÉFIS DE LA SÉANCE -->
+    <div class="challenges-container">
+      
+      <!-- DÉFI 1 : PREMIER CONTACT EN LIGNE DROITE -->
+      <div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-badge-title" style="color:#0284c7;">
+            <span class="step-pill">ÉTAPE 1</span>
+            <span>Le Tout Premier Pas (Ligne Droite)</span>
+          </div>
+          <div class="star-check-box">
+            <span>Colorie ton étoile :</span>
+            <span class="star-empty">★</span>
+          </div>
+        </div>
+
+        <div class="challenge-body">
+          <!-- Grille miniature A1-C4 -->
+          <div class="mini-grid-preview">
+            <!-- Ligne A -->
+            <div class="mini-cell cell-robot"><span class="cell-label-corner">A1</span>🤖➔</div>
+            <div class="mini-cell"><span class="cell-label-corner">A2</span>·</div>
+            <div class="mini-cell cell-target"><span class="cell-label-corner">A3</span>🧀</div>
+            <div class="mini-cell"><span class="cell-label-corner">A4</span>·</div>
+            <!-- Ligne B -->
+            <div class="mini-cell"><span class="cell-label-corner">B1</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">B2</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">B3</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">B4</span>·</div>
+            <!-- Ligne C -->
+            <div class="mini-cell"><span class="cell-label-corner">C1</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">C2</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">C3</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">C4</span>·</div>
+          </div>
+
+          <!-- Zone de code -->
+          <div class="code-action-box">
+            <div class="code-instruction-text">
+              1. Fais rouler la petite voiture de <strong>A1</strong> à <strong>A3</strong>.<br>
+              2. Combien de pas en avant ? <strong>Deux !</strong><br>
+              3. Pose 2 cartes vertes sur ton tapis :
+            </div>
+            <div class="slots-row">
+              <div class="slot-kid slot-green">⬆️<span style="font-size:5pt;">AVANCE</span></div>
+              <span class="slot-kid-arrow">➔</span>
+              <div class="slot-kid slot-green">⬆️<span style="font-size:5pt;">AVANCE</span></div>
+              <span class="slot-kid-arrow">➔</span>
+              <div class="slot-kid" style="border-color:#10b981; background:#ecfdf5;">▶️<span style="font-size:5pt; color:#047857;">GO !</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DÉFI 2 : ALERTE MÉTÉORITE (VIRAGES) -->
+      <div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-badge-title" style="color:#d97706;">
+            <span class="step-pill" style="background:#d97706;">ÉTAPE 2</span>
+            <span>Alerte Météorite ! (Contournement)</span>
+          </div>
+          <div class="star-check-box">
+            <span>Colorie ton étoile :</span>
+            <span class="star-empty">★</span>
+          </div>
+        </div>
+
+        <div class="challenge-body">
+          <!-- Grille miniature A1-C4 -->
+          <div class="mini-grid-preview">
+            <!-- Ligne A -->
+            <div class="mini-cell cell-robot"><span class="cell-label-corner">A1</span>🤖➔</div>
+            <div class="mini-cell cell-wall"><span class="cell-label-corner">A2</span>🛑</div>
+            <div class="mini-cell"><span class="cell-label-corner">A3</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">A4</span>·</div>
+            <!-- Ligne B -->
+            <div class="mini-cell"><span class="cell-label-corner">B1</span>·</div>
+            <div class="mini-cell cell-target"><span class="cell-label-corner">B2</span>🧀</div>
+            <div class="mini-cell"><span class="cell-label-corner">B3</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">B4</span>·</div>
+            <!-- Ligne C -->
+            <div class="mini-cell"><span class="cell-label-corner">C1</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">C2</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">C3</span>·</div>
+            <div class="mini-cell"><span class="cell-label-corner">C4</span>·</div>
+          </div>
+
+          <!-- Zone de code -->
+          <div class="code-action-box">
+            <div class="code-instruction-text">
+              1. Un rocher rouge bloque le chemin en <strong>A2</strong> !<br>
+              2. Fais tourner NÉO du <strong>côté bleu</strong> pour descendre en <strong>B1</strong>, puis attrape le cristal en <strong>B2</strong> !
+            </div>
+            <div class="slots-row">
+              <div class="slot-kid slot-blue">↶<span style="font-size:5pt;">GAUCHE</span></div>
+              <span class="slot-kid-arrow">➔</span>
+              <div class="slot-kid slot-green">⬆️<span style="font-size:5pt;">AVANCE</span></div>
+              <span class="slot-kid-arrow">➔</span>
+              <div class="slot-kid slot-orange">↷<span style="font-size:5pt;">DROITE</span></div>
+              <span class="slot-kid-arrow">➔</span>
+              <div class="slot-kid slot-green">⬆️<span style="font-size:5pt;">AVANCE</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DÉFI 3 : LA DANSE DE LA VICTOIRE (ACTION MAGIQUE) -->
+      <div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-badge-title" style="color:#7e22ce;">
+            <span class="step-pill" style="background:#7e22ce;">ÉTAPE 3</span>
+            <span>La Fête Cosmique ! (Action Magique)</span>
+          </div>
+          <div class="star-check-box">
+            <span>Colorie ton étoile :</span>
+            <span class="star-empty">★</span>
+          </div>
+        </div>
+
+        <div class="challenge-body" style="grid-template-columns: 1fr;">
+          <div class="code-action-box" style="flex-direction:row; justify-content:space-between; align-items:center;">
+            <div class="code-instruction-text">
+              Le premier cristal est rechargé !<br>
+              Pour fêter la victoire, appuie sur le <strong>clic central du joystick (⭐)</strong>.<br>
+              NÉO allume ses lumières arc-en-ciel et danse sans perdre son orientation !
+            </div>
+            <div class="slot-kid slot-purple" style="width:20mm; height:20mm; font-size:14pt;">
+              ⭐<br><span style="font-size:5.5pt; font-weight:900;">ACTION !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DIPLÔME DE FIN DE MISSION -->
+    <div class="kid-footer-diploma">
+      <div class="diploma-text">
+        <h3>🏆 BREVET D'ARPENTEUR D'ÉTOILES — NIVEAU 1</h3>
+        <p>Attribué par la Base Spatiale au Commandant pour son courage et sa précision !</p>
+      </div>
+      <div class="stars-total">
+        <span>⭐</span><span>⭐</span><span>⭐</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PAGE 2 / 2 : LE GUIDE DE DIALOGUE & ANIMATION DU PAPA (BASE STELLAIRE)
+       ======================================================================== -->
+  <div class="page-a4">
+    <div class="screen-tag">
+      <span>Page 2/2 • Guide d'Animation Papa (Prompt de Rôle & Astuces 5 ans)</span>
+      <span>À garder discrètement sous les yeux</span>
+    </div>
+
+    <div class="papa-header">
+      <div>
+        <h2>🛰️ GUIDE DE LA BASE STELLAIRE (PAPA)</h2>
+        <div class="papa-subtitle">Comment animer la séance comme un jeu de rôle captivant en 25 minutes</div>
+      </div>
+      <div class="role-badge-papa">Rôle : Contrôleur Houston</div>
+    </div>
+
+    <div class="dialogue-section">
+      
+      <!-- PHASE 0 : RITUEL D'ACCUEIL -->
+      <div class="step-box-papa">
+        <div class="step-header-papa">
+          <span>00:00 - 05:00 • LE RITUEL D'OUVERTURE & LE BADGE</span>
+          <span style="color:#0284c7;">Rituel Solennel</span>
+        </div>
+        <div class="voice-bubble">
+          « Alerte rouge ! Commandant, viens vite ! NÉO vient d'atterrir sur notre table d'exploration. Mais son antenne est brouillée, il est tout endormi... Seul un pilote de 5 ans peut le réveiller ! Écris ton prénom sur ton badge de Commandant ! »
+        </div>
+        <ul class="papa-action-list">
+          <li>Faites-lui inscrire son prénom sur la fiche mission.</li>
+          <li>Donnez-lui la CyberPi : <strong>c'est lui et lui seul qui pousse le bouton ON</strong>.</li>
+          <li>Faites-lui observer l'écran : <em>« Regarde ses yeux ! NÉO est réveillé, il t'attend ! »</em></li>
+        </ul>
+      </div>
+
+      <!-- PHASE 1 : DÉFI 1 LIGNE DROITE -->
+      <div class="step-box-papa">
+        <div class="step-header-papa">
+          <span>05:00 - 12:00 • ÉTAPE 1 : PREMIER PAS EN LIGNE DROITE (A1 ➔ A3)</span>
+          <span style="color:#10b981;">Translation Linéaire</span>
+        </div>
+        <div class="voice-bubble">
+          « NÉO a repéré un premier Cristal Fromage en A3. Prenons d'abord la petite voiturette mBot2 sur le plateau de table pour tester la route sans danger ! »
+        </div>
+        <ul class="papa-action-list">
+          <li><strong>Sur la table :</strong> Il avance la petite voiture de A1 à A2 puis A3. Comptez à voix haute : <em>« 1 pas, 2 pas ! »</em>.</li>
+          <li><strong>Sur le tapis :</strong> Il pose 2 cartes vertes <em>Avancer</em>.</li>
+          <li><strong>Sur la CyberPi :</strong> Il pousse le joystick vers le haut 2 fois (bips sonores).</li>
+          <li><strong>Au sol :</strong> Posez le vrai mBot2 sur la ligne de départ. Compte à rebours : <em>« 3... 2... 1... GO ! »</em> (Bouton A).</li>
+          <li>Le robot atteint le trésor : faites-lui colorier sa <strong>première étoile ★</strong> !</li>
+        </ul>
+      </div>
+
+      <!-- PHASE 2 : DÉFI 2 MÉTÉORITE -->
+      <div class="step-box-papa">
+        <div class="step-header-papa">
+          <span>12:00 - 20:00 • ÉTAPE 2 : ALERTE MÉTÉORITE & VIRAGE (A1 ➔ B2)</span>
+          <span style="color:#d97706;">Décentration Spatiale</span>
+        </div>
+        <div class="voice-bubble">
+          « Attention Commandant ! Un énorme rocher rouge vient de tomber en A2 ! Impossible d'aller tout droit, NÉO va s'écraser ! Comment contourner le rocher ? »
+        </div>
+        <ul class="papa-action-list">
+          <li>Posez la carte rouge en A2 sur le plateau miniature.</li>
+          <li>S'il hésite sur la gauche et la droite : montrez-lui le <strong>flanc bleu</strong> de la voiturette : <em>« C'est le côté bleu de NÉO ! Tourne la voiturette vers le bleu ! »</em>.</li>
+          <li>Montrez-lui que pivoter ne change pas de case (il tourne sur place en A1, puis avance en B1).</li>
+          <li>Il appuie sur **B** sur la CyberPi pour effacer la mémoire avant de retaper la nouvelle séquence.</li>
+          <li>Réussite : faites-lui colorier la <strong>deuxième étoile ★</strong> !</li>
+        </ul>
+      </div>
+
+      <!-- PHASE 3 : CLÔTURE & RÉCOMPENSE -->
+      <div class="step-box-papa">
+        <div class="step-header-papa">
+          <span>20:00 - 25:00 • ÉTAPE 3 : LA DANSE & CLÔTURE NARRATIVE</span>
+          <span style="color:#7e22ce;">Ancrage & Fierté</span>
+        </div>
+        <div class="voice-bubble">
+          « Mission 001 accomplie avec succès ! NÉO a stocké son premier cristal d'énergie. Faisons la Danse Magique ! Appuie sur l'étoile au centre du joystick ! »
+        </div>
+        <ul class="papa-action-list">
+          <li>Le robot joue sa fanfare lumineuse arc-en-ciel.</li>
+          <li>Coloriage de la <strong>troisième étoile ★</strong> et remise solennelle du brevet.</li>
+          <li><strong>Le mot de la fin (Cliffhanger) :</strong> <em>« NÉO a bien travaillé, sa batterie est fatiguée. Éteins l'interrupteur pour qu'il dorme. La prochaine fois, nous explorerons la Grande Caverne sous le canapé ! »</em></li>
+        </ul>
+      </div>
+
+      <!-- RAPPEL PÉDAGOGIQUE POUR LE PAPA -->
+      <div class="tip-callout">
+        <span>💡</span>
+        <span><strong>Conseil Clé à 5 ans :</strong> Si le robot va dans le mauvais sens, <em>ne touchez pas la CyberPi à sa place</em>. Riez ensemble de la bêtise du robot (« Oh le coquin, il recule ! ») et demandez-lui : « Quelle carte s'est trompée ? » C'est la découverte du débogage !</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
